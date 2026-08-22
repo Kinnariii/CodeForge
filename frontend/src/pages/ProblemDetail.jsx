@@ -47,45 +47,45 @@ function ProblemDetail() {
   const [subDetailError, setSubDetailError] = useState("");
 
   /* fetch problem */
-useEffect(() => {
+  useEffect(() => {
     let cancelled = false;
 
     const fetchProblem = async () => {
-        setLoading(true);
-        setLoadError("");
+      setLoading(true);
+      setLoadError("");
 
-        try {
-            const res = await getProblemById(id);
+      try {
+        const res = await getProblemById(id);
 
-            if (cancelled) return;
+        if (cancelled) return;
 
-            setProblem(res.data);
-            setCode(res.data.starterCode || "");
+        setProblem(res.data);
+        setCode(res.data.starterCode || "");
 
-        } catch (err) {
+      } catch (err) {
 
-            if (cancelled) return;
+        if (cancelled) return;
 
-            setLoadError(
-                err.response?.data?.message ||
-                "Failed to load problem."
-            );
+        setLoadError(
+          err.response?.data?.message ||
+          "Failed to load problem."
+        );
 
-        } finally {
+      } finally {
 
-            if (!cancelled) {
-                setLoading(false);
-            }
+        if (!cancelled) {
+          setLoading(false);
         }
+      }
     };
 
     fetchProblem();
 
     return () => {
-        cancelled = true;
+      cancelled = true;
     };
 
-}, [id]);
+  }, [id]);
 
   /* fetch full problem list (sorted by problemNumber) to determine prev/next */
   useEffect(() => {
@@ -196,24 +196,117 @@ useEffect(() => {
     }
   };
 
+  const pollSubmissionResult = async (submissionId) => {
+  const maxAttempts = 60;
+  let attempts = 0;
+
+  while (attempts < maxAttempts) {
+    try {
+      const res = await getSubmissionById(submissionId);
+
+      const submission = res.data;
+
+      console.log(
+        `Submission ${submissionId} status:`,
+        submission.status
+      );
+
+      // Final states
+      if (
+        submission.status === "accepted" ||
+        submission.status === "wrong_answer" ||
+        submission.status === "compile_error" ||
+        submission.status === "runtime_error" ||
+        submission.status === "time_limit_exceeded"
+      ) {
+        return submission;
+      }
+
+    } catch (error) {
+      console.error("Polling submission failed:", error);
+    }
+
+    attempts++;
+
+    // wait 1 second
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+
+  throw new Error("Submission judging timed out.");
+};
+
   /* Submit (All Test Cases, judged & recorded in DB) */
   const handleSubmit = async () => {
-    if (running || submitting) return;
-    setSubmitting(true);
-    setExecError("");
-    setExecutionMode("submit");
-    try {
-      const res = await createSubmission({ problem: id, language: "cpp", code });
-      setSubmitResult(res.data);
-      if (leftTab === "submissions") {
-        fetchProblemSubs();
+  if (running || submitting) return;
+
+  setSubmitting(true);
+  setExecError("");
+  setExecutionMode("submit");
+  setSubmitResult(null);
+
+  try {
+    // Step 1: Create submission + add job to BullMQ
+    const res = await createSubmission({
+      problem: id,
+      language: "cpp",
+      code,
+    });
+
+    console.log("Submission created:", res.data);
+
+    /*
+      Backend should return something like:
+
+      {
+        submissionId: "...",
+        status: "pending"
       }
-    } catch (err) {
-      setExecError(err.response?.data?.message || "Submission failed. Please try again.");
-    } finally {
-      setSubmitting(false);
+    */
+
+    const submissionId =
+      res.data.submissionId ||
+      res.data._id ||
+      res.data.data?.submissionId ||
+      res.data.data?._id;
+
+    if (!submissionId) {
+      throw new Error("Submission ID was not returned by server.");
     }
-  };
+
+    // Immediately show pending state
+    setSubmitResult({
+      submissionId,
+      status: "pending",
+      passedTests: 0,
+      totalTests: 0,
+    });
+
+    // Step 2: Poll MongoDB until worker finishes judging
+    const finalResult = await pollSubmissionResult(submissionId);
+
+    console.log("Final submission result:", finalResult);
+
+    // Step 3: Show actual final result
+    setSubmitResult(finalResult);
+
+    // Refresh submissions if tab is open
+    if (leftTab === "submissions") {
+      fetchProblemSubs();
+    }
+
+  } catch (err) {
+    console.error("Submission failed:", err);
+
+    setExecError(
+      err.response?.data?.message ||
+      err.message ||
+      "Submission failed. Please try again."
+    );
+
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   /* Reset code back to starter code */
   const handleResetCode = () => {
@@ -612,7 +705,11 @@ useEffect(() => {
                   <div className="judging-dots">
                     <span /><span /><span />
                   </div>
-                  <p>Judging submission against all test cases...</p>
+                  <p>
+                    {submitResult?.status === "pending"
+                      ? "Submission queued..."
+                      : "Judging submission against all test cases..."}
+                  </p>
                 </div>
               )}
 

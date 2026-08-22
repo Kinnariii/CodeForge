@@ -1,18 +1,26 @@
 const submissionService = require("../services/submission.service");
 const judgeService = require("../services/judge.service");
+const submissionQueue = require("../queues/submission.queue");
 
 const createSubmission = async (req, res) => {
-
     try {
-
         const submission = await submissionService.createSubmission(req.body, req.user.id);
 
-        const result = await judgeService.judgeSubmission( submission._id, req.user.id );
+        await submissionQueue.add(
+            "judge-submission",
+            {
+                submissionId: submission._id.toString(),
+                userId: req.user.id.toString()
+            }
+        );
 
         res.status(201).json({
             success: true,
-            message: "Submission judged successfully",
-            data: result
+            message: "Submission queued successfully",
+            data: {
+                submissionId: submission._id,
+                status: submission.status
+            }
         });
     } catch (error) {
         res.status(500).json({
@@ -30,7 +38,7 @@ const getSubmissionById = async (req, res) => {
             success: true,
             data: submission
         });
-    } catch(error) {
+    } catch (error) {
         res.status(404).json({
             success: false,
             message: error.message
@@ -59,9 +67,9 @@ const getMySubmissions = async (req, res) => {
 
 
 const getProblemSubmissions = async (req, res) => {
-    
+
     try {
-        const submissions =await submissionService.getProblemSubmissions(req.user.id, req.params.problemId, req.query);
+        const submissions = await submissionService.getProblemSubmissions(req.user.id, req.params.problemId, req.query);
         res.status(200).json({
             success: true,
             data: submissions

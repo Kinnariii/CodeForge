@@ -1,5 +1,6 @@
 const submissionRepository = require("../repositories/submission.repository");
 const problemRepository = require("../repositories/problem.repository");
+const submissionQueue = require("../queues/submission.queue");
 
 const createSubmission = async (submissionData, userId) => {
 
@@ -19,6 +20,12 @@ const createSubmission = async (submissionData, userId) => {
         code: submissionData.code,
         status: "pending"
     });
+
+    await submissionQueue.add("judge-submission", {
+            submissionId: submission._id.toString(),
+            userId: userId.toString()
+        }
+    );
     return submission;
 };
 
