@@ -144,6 +144,9 @@ const getUserDashboard = async (userId) => {
             name: user.name,
             email: user.email,
             role: user.role,
+            contestRating: user.contestRating ?? 1200,
+            battleRating: user.battleRating ?? 1200,
+            ratingHistory: user.ratingHistory || [],
             createdAt: user.createdAt
         }
     };

@@ -5,6 +5,9 @@ import Login        from "./pages/Login";
 import Register     from "./pages/Register";
 import ProblemList  from "./pages/ProblemList";
 import ProblemDetail from "./pages/ProblemDetail";
+import Contests     from "./pages/Contests";
+import ContestDetail from "./pages/ContestDetail";
+import CreateContest from "./pages/CreateContest";
 import Submissions  from "./pages/Submissions";
 import Profile      from "./pages/Profile";
 import NotFound     from "./pages/NotFound";
@@ -25,6 +28,18 @@ function App() {
 
           <Route path="/problems/:id" element={
             <ProtectedRoute><ProblemDetail /></ProtectedRoute>
+          } />
+
+          <Route path="/contests" element={
+            <ProtectedRoute><Contests /></ProtectedRoute>
+          } />
+
+          <Route path="/contests/create" element={
+            <ProtectedRoute><CreateContest /></ProtectedRoute>
+          } />
+
+          <Route path="/contests/:id" element={
+            <ProtectedRoute><ContestDetail /></ProtectedRoute>
           } />
 
           <Route path="/submissions" element={

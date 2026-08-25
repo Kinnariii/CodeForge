@@ -15,6 +15,14 @@ const STATUS_LABELS = {
   running: "Running",
 };
 
+const getRatingTier = (rating = 1200) => {
+  if (rating >= 2000) return { title: "Grandmaster", color: "#ef4444", bg: "rgba(239, 68, 68, 0.15)" };
+  if (rating >= 1700) return { title: "Master", color: "#a855f7", bg: "rgba(168, 85, 247, 0.15)" };
+  if (rating >= 1500) return { title: "Knight", color: "#06b6d4", bg: "rgba(6, 182, 212, 0.15)" };
+  if (rating >= 1300) return { title: "Specialist", color: "#10b981", bg: "rgba(16, 185, 129, 0.15)" };
+  return { title: "Novice", color: "#94a3b8", bg: "rgba(148, 163, 184, 0.15)" };
+};
+
 function Profile() {
   const navigate = useNavigate();
   const { updateUser } = useAuth();   // ← global state updater
@@ -292,6 +300,92 @@ function Profile() {
             </div>
             <div className="stat-footer-text">Across all solved and attempted challenges</div>
           </div>
+        </div>
+
+        {/* ── COMPETITIVE RATINGS & TIERS ── */}
+        <div className="prof-section">
+          <div className="prof-section-header">
+            <div>
+              <h2 className="prof-section-title">Competitive Ratings</h2>
+              <p className="prof-section-subtitle">Your official algorithmic rating and battle tier</p>
+            </div>
+            <button className="prof-text-link" onClick={() => navigate("/contests")}>
+              Explore Contests →
+            </button>
+          </div>
+
+          <div className="ratings-cards-grid">
+            {/* Contest Rating Card */}
+            {(() => {
+              const cRating = user.contestRating ?? 1200;
+              const tier = getRatingTier(cRating);
+              return (
+                <div className="rating-card contest-tier-card">
+                  <div className="rating-card-top">
+                    <span className="rating-type-tag">🏆 Contest Rating</span>
+                    <span className="tier-badge" style={{ color: tier.color, background: tier.bg }}>
+                      {tier.title}
+                    </span>
+                  </div>
+                  <div className="rating-score-row">
+                    <span className="rating-num" style={{ color: tier.color }}>{cRating}</span>
+                    <span className="rating-sub">Points</span>
+                  </div>
+                  <div className="rating-card-footer">
+                    <span>Ranked in Official Weekly & Bi-Weekly Contests</span>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Battle PvP Rating Card */}
+            {(() => {
+              const bRating = user.battleRating ?? 1200;
+              const tier = getRatingTier(bRating);
+              return (
+                <div className="rating-card battle-tier-card">
+                  <div className="rating-card-top">
+                    <span className="rating-type-tag">⚔️ Battle Rating</span>
+                    <span className="tier-badge" style={{ color: tier.color, background: tier.bg }}>
+                      Gladiator
+                    </span>
+                  </div>
+                  <div className="rating-score-row">
+                    <span className="rating-num" style={{ color: tier.color }}>{bRating}</span>
+                    <span className="rating-sub">Points</span>
+                  </div>
+                  <div className="rating-card-footer">
+                    <span>Earned in Real-Time 1v1 PvP Arena Battles</span>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Rating History Feed */}
+          {user.ratingHistory && user.ratingHistory.length > 0 && (
+            <div className="rating-history-box">
+              <h3 className="rh-title">Rating History</h3>
+              <div className="rh-list">
+                {user.ratingHistory.slice(-5).reverse().map((rh, idx) => (
+                  <div key={idx} className="rh-row">
+                    <div className="rh-left">
+                      <span className={`rh-type-pill ${rh.type}`}>
+                        {rh.type === "contest" ? "🏆 Contest" : "⚔️ Battle"}
+                      </span>
+                      <span className="rh-name">{rh.title || "Rated Match"}</span>
+                    </div>
+                    <div className="rh-right">
+                      <span className={`rh-delta ${rh.change >= 0 ? "positive" : "negative"}`}>
+                        {rh.change >= 0 ? `+${rh.change}` : rh.change}
+                      </span>
+                      <span className="rh-new-rating">➔ {rh.newRating}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* ── DIFFICULTY BREAKDOWN ── */}

@@ -29,7 +29,7 @@ const executeCpp = async (code, testCases) => {
             `--pids-limit 64 ` +
             `-v "${tempDir}:/workspace:rw" ` +
             `codeforge-cpp-runner:1.1 ` +
-            `bash -c "cd /workspace && g++ main.cpp -o main"`;
+            `bash -c "cd /workspace && g++ -O2 -Werror=return-type main.cpp -o main"`;
         try {
 
             await execAsync(compileCommand, {

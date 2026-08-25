@@ -20,6 +20,45 @@
   z-index: 10;
 }
 
+.dp-topbar.contest-mode-topbar {
+  background: rgba(18, 22, 34, 0.95);
+  border-bottom-color: rgba(99, 102, 241, 0.4);
+}
+
+.dp-contest-timer-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-family: var(--font-mono, monospace);
+}
+
+.live-ping-small {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse-dot 1.2s infinite;
+}
+
+.timer-txt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.timer-num {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #34d399;
+  letter-spacing: 0.5px;
+}
+
 .dp-topbar-left {
   display: flex;
   align-items: center;

@@ -13,6 +13,7 @@ function Navbar() {
   const path = location.pathname;
   const activeKey =
     path.startsWith("/problems") ? "problems" :
+    path.startsWith("/contests") ? "contests" :
     path.startsWith("/submissions") ? "submissions" :
     path.startsWith("/profile") ? "profile" : "";
 
@@ -28,6 +29,7 @@ function Navbar() {
 
   const navItems = [
     { key: "problems",    label: "Problems",    path: "/problems" },
+    { key: "contests",    label: "Contests",    path: "/contests" },
     { key: "submissions", label: "Submissions", path: "/submissions" },
     { key: "profile",     label: "Profile",     path: "/profile" },
   ];

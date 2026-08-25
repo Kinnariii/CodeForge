@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import "./ProblemDetail.css";
 import { getProblemById, getProblems } from "../services/problemService";
+import { getContestById } from "../services/contestService";
 import { createSubmission, runCode, getMySubmissions, getSubmissionById } from "../services/submissionService";
 
 const STATUS_LABELS = {
@@ -36,6 +37,12 @@ function ProblemDetail() {
   const [leftTab, setLeftTab] = useState("description");
   const [problemSubs, setProblemSubs] = useState([]);
   const [subsLoading, setSubsLoading] = useState(false);
+
+  const [searchParams] = useSearchParams();
+  const contestId = searchParams.get("contestId");
+  const [contest, setContest] = useState(null);
+  const [contestProblems, setContestProblems] = useState([]);
+  const [contestTimeLeft, setContestTimeLeft] = useState("");
 
   /* prev/next problem navigation */
   const [prevProblemId, setPrevProblemId] = useState(null);
@@ -87,8 +94,50 @@ function ProblemDetail() {
 
   }, [id]);
 
-  /* fetch full problem list (sorted by problemNumber) to determine prev/next */
+  /* Fetch contest context if contestId exists */
   useEffect(() => {
+    if (!contestId) return;
+    const fetchContest = async () => {
+      try {
+        const res = await getContestById(contestId);
+        const cData = res.data.data;
+        setContest(cData);
+        if (cData.problems && cData.problems.length > 0) {
+          setContestProblems(cData.problems);
+          const list = cData.problems;
+          const currentIndex = list.findIndex((p) => (p._id || p) === id);
+          if (currentIndex !== -1) {
+            setPrevProblemId(currentIndex > 0 ? (list[currentIndex - 1]._id || list[currentIndex - 1]) : null);
+            setNextProblemId(currentIndex < list.length - 1 ? (list[currentIndex + 1]._id || list[currentIndex + 1]) : null);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load contest context:", err);
+      }
+    };
+    fetchContest();
+  }, [contestId, id]);
+
+  /* Live countdown for contest if active */
+  useEffect(() => {
+    if (!contest) return;
+    const timer = setInterval(() => {
+      const diff = new Date(contest.endTime) - new Date();
+      if (diff <= 0) {
+        setContestTimeLeft("00:00:00");
+      } else {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        setContestTimeLeft(`${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`);
+      }
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [contest]);
+
+  /* fetch regular global problem list if NOT in contest */
+  useEffect(() => {
+    if (contestId) return; // handled by contest context above
     const fetchNeighbours = async () => {
       try {
         const res = await getProblems({ limit: 1000 });
@@ -109,14 +158,18 @@ function ProblemDetail() {
       }
     };
     fetchNeighbours();
-  }, [id]);
+  }, [id, contestId]);
 
   const goToPrevProblem = () => {
-    if (prevProblemId) navigate(`/problems/${prevProblemId}`);
+    if (prevProblemId) {
+      navigate(`/problems/${prevProblemId}${contestId ? `?contestId=${contestId}` : ""}`);
+    }
   };
 
   const goToNextProblem = () => {
-    if (nextProblemId) navigate(`/problems/${nextProblemId}`);
+    if (nextProblemId) {
+      navigate(`/problems/${nextProblemId}${contestId ? `?contestId=${contestId}` : ""}`);
+    }
   };
 
   /* open submission detail modal */
@@ -374,9 +427,9 @@ function ProblemDetail() {
   return (
     <div className="dp-page">
       {/* ── TOP BAR ── */}
-      <div className="dp-topbar">
+      <div className={`dp-topbar ${contestId ? "contest-mode-topbar" : ""}`}>
         <div className="dp-topbar-left">
-          <div className="dp-logo" onClick={() => navigate("/problems")}>
+          <div className="dp-logo" onClick={() => navigate(contestId ? `/contests/${contestId}` : "/problems")}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M8 6L3 12L8 18" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M16 6L21 12L16 18" strokeLinecap="round" strokeLinejoin="round" />
@@ -385,8 +438,11 @@ function ProblemDetail() {
             <span>CodeForge</span>
           </div>
           <span className="dp-separator">·</span>
-          <button className="dp-back-btn" onClick={() => navigate("/problems")}>
-            ← Problem List
+          <button
+            className="dp-back-btn"
+            onClick={() => navigate(contestId ? `/contests/${contestId}` : "/problems")}
+          >
+            {contestId ? "← Contest Dashboard" : "← Problem List"}
           </button>
         </div>
 
@@ -402,7 +458,14 @@ function ProblemDetail() {
             </svg>
           </button>
           <span className="dp-problem-crumb">
-            {problem.problemNumber}. {problem.title}
+            {(() => {
+              if (contestId && contestProblems.length > 0) {
+                const cIdx = contestProblems.findIndex((p) => (p._id || p)?.toString() === id?.toString());
+                const cLetter = cIdx !== -1 ? String.fromCharCode(65 + cIdx) : "";
+                return `Problem ${cLetter}: ${problem.title}`;
+              }
+              return `${problem.problemNumber}. ${problem.title}`;
+            })()}
           </span>
           <button
             className="dp-nav-arrow"
@@ -417,6 +480,15 @@ function ProblemDetail() {
         </div>
 
         <div className="dp-topbar-right">
+          {/* CONTEST TIMER IN TOPBAR */}
+          {contestId && contestTimeLeft && (
+            <div className="dp-contest-timer-badge">
+              <span className="live-ping-small" />
+              <span className="timer-txt">Contest Ends:</span>
+              <span className="timer-num">{contestTimeLeft}</span>
+            </div>
+          )}
+
           <div className="dp-actions-group">
             {/* RUN BUTTON */}
             <button
@@ -817,10 +889,18 @@ function ProblemDetail() {
                     </div>
                   </div>
 
-                  {/* Sample passed list */}
-                  {submitResult.sampleResults?.length > 0 && (
+                  {/* Sample passed list (from submitResult or fallback to problem examples) */}
+                  {(submitResult.sampleResults?.length > 0 || (submitResult.status === "accepted" && problem?.examples?.length > 0)) && (
                     <div className="dp-testcases">
-                      {submitResult.sampleResults.map((tc) => (
+                      {(submitResult.sampleResults && submitResult.sampleResults.length > 0
+                        ? submitResult.sampleResults
+                        : problem.examples.map((ex, i) => ({
+                            index: i + 1,
+                            input: ex.input,
+                            expectedOutput: ex.output,
+                            actualOutput: ex.output
+                          }))
+                      ).map((tc) => (
                         <div key={tc.index} className="dp-tc passed">
                           <div className="dp-tc-header">
                             <span className="dp-tc-num">✓ Case {tc.index}</span>
@@ -829,7 +909,7 @@ function ProblemDetail() {
                           <div className="dp-tc-body">
                             <div className="dp-tc-row"><span className="tc-k">Input</span><code>{tc.input}</code></div>
                             <div className="dp-tc-row"><span className="tc-k">Expected</span><code>{tc.expectedOutput}</code></div>
-                            <div className="dp-tc-row"><span className="tc-k">Output</span><code>{tc.actualOutput}</code></div>
+                            <div className="dp-tc-row"><span className="tc-k">Output</span><code className="correct">{tc.actualOutput}</code></div>
                           </div>
                         </div>
                       ))}

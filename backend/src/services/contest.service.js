@@ -110,20 +110,25 @@ const getContestStatus = async (contestId) => {
 }
 
 const getContestProblems = async (contestId, userId) => {
-
-    const contest = await contestRepository.findContestByIdWithoutPopulate(contestId);
+    const contest = await contestRepository.findContestById(contestId);
     if (!contest) {
         throw new ApiError(404, "Contest not found");
     }
 
-    const participant = await contestRepository.isParticipant(contestId, userId);
-    if (!participant) {
-        throw new ApiError(403, "You must join the contest first");
+    const now = new Date();
+
+    // If contest has ended, anyone can view & solve problems for practice
+    if (now >= contest.endTime) {
+        return contest.problems;
     }
 
-    const now = new Date();
     if (now < contest.startTime) {
         throw new ApiError(403, "Contest has not started yet");
+    }
+
+    const participant = await contestRepository.isParticipant(contestId, userId);
+    if (!participant) {
+        throw new ApiError(403, "You must join the contest first to view problems");
     }
 
     return contest.problems;
