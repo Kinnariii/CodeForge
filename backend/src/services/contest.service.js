@@ -1,5 +1,8 @@
+const User = require("../models/User");
+
 const contestRepository = require("../repositories/contest.repository");
 const problemRepository = require("../repositories/problem.repository");
+
 const ApiError = require("../utils/ApiError");
 
 const createContest = async (contestData, userId) => {
@@ -58,8 +61,9 @@ const getContestById = async (contestId) => {
 }
 
 const joinContest = async (contestId, userId) => {
+
     const contest = await contestRepository.findContestByIdWithoutPopulate(contestId);
-    if(!contest){
+    if(!contest) {
         throw new ApiError(404, "Contest not found");
     }
 
@@ -67,13 +71,20 @@ const joinContest = async (contestId, userId) => {
     if (now >= contest.endTime) {
         throw new ApiError(400, "Contest has already ended");
     }
+    if (now >= contest.startTime) {
+        throw new ApiError(400, "Contest has already started");
+    }
 
     const alreadyParticipant = await contestRepository.isParticipant(contestId, userId);
     if (alreadyParticipant) {
         throw new ApiError(400, "You have already joined this contest");
     }
 
-    const updatedContest = await contestRepository.addParticipant(contestId, userId);
+    const user = await User.findById(userId).select("contestRating");
+    if (!user) throw new ApiError(404, "User not found");
+
+    const currentRating = user.contestRating ?? 1200;
+    const updatedContest = await contestRepository.addParticipant(contestId, userId, currentRating);
 
     return updatedContest;
 }

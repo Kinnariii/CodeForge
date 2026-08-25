@@ -21,10 +21,9 @@ const findById = async (id) => {
 
 const updateById = async (id, data) => {
     return await Problem.findByIdAndUpdate(id, data, {
-            new: true,
+            returnDocument: 'after',
             runValidators: true
-        }
-    );
+    });
 };
 
 const deleteById = async (id) => {

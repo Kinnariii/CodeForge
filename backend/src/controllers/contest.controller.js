@@ -1,4 +1,5 @@
 const contestService = require("../services/contest.service");
+const ratingService = require("../services/rating.service");
 
 const createContest = async (req, res) => {
     try {
@@ -92,6 +93,23 @@ const getContestProblems = async (req, res) => {
     }
 };
 
+const calculateContestRatings = async (req, res) => {
+
+    try {
+        const result = await ratingService.calculateContestRatings(req.params.contestId);
+        return res.status(200).json({
+            success: true,
+            message: "Contest ratings calculated successfully",
+            data: result
+        });
+    } catch (error) {
+        return res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message || "Internal Server Error"
+        });
+    }
+};
+
 module.exports = {
-    createContest, getAllContests, getContestById, joinContest, getContestStatus, getContestProblems
+    createContest, getAllContests, getContestById, joinContest, getContestStatus, getContestProblems, calculateContestRatings
 };

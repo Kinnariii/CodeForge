@@ -22,12 +22,15 @@ const findContestByIdWithoutPopulate = async (contestId) => {
     return await Contest.findById(contestId);
 }
 
-const addParticipant = async (contestId, userId) => {
+const addParticipant = async (contestId, userId, rating) => {
     return await Contest.findByIdAndUpdate(contestId, {
             $addToSet: {
                 participants: userId
+            },
+            $push: {
+                participantRatings: {user: userId, rating }
             }
-        }, {new: true}
+        }, { returnDocument: 'after' }
     );
 }
 

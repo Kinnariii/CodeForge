@@ -3,6 +3,33 @@ const validator = require("validator");
 
 const Schema = mongoose.Schema
 
+const ratingHistorySchema = new Schema(
+    {
+        type: {
+            type: String,
+            enum: ["contest", "battle"],
+            required: true
+        },
+        change: {
+            type: Number,
+            required: true
+        },
+        newRating: {
+            type: Number,
+            required: true
+        },
+        title: {
+            type: String,
+            required: true,
+            trim: true
+        }
+    },
+    {
+        timestamps: true,
+        _id: false
+    }
+);
+
 const userSchema = new Schema({
     name: {
         type: String,
@@ -31,7 +58,22 @@ const userSchema = new Schema({
         type: String,
         enum: ["user", "admin"],
         default: "user"
-    }
+    },
+    // RATING SYSTEM
+    contestRating: {
+        type: Number,
+        default: 1200,
+        min: 0
+    },
+    battleRating: {
+        type: Number,
+        default: 1200,
+        min: 0
+    },
+    ratingHistory: {
+        type: [ratingHistorySchema],
+        default: []
+    } 
 },
 {
     timestamps:true

@@ -18,4 +18,6 @@ router.get("/:contestId/status", authMiddleware, contestController.getContestSta
 
 router.get("/:contestId/problems", authMiddleware, contestController.getContestProblems);
 
+router.post("/:contestId/calculate-ratings", authMiddleware, adminMiddleware, contestController.calculateContestRatings);
+
 module.exports = router;

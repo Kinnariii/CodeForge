@@ -35,6 +35,51 @@ const contestSchema = new mongoose.Schema(
                 ref: "User"
             }
         ],
+        participantRatings: [
+            {
+                user: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "User",
+                    required: true
+                },
+                rating: {
+                    type: Number,
+                    required: true
+                }
+            }
+        ],
+        finalLeaderboard: [
+            {
+                user: {
+                    _id: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: "User"
+                    },
+                    name: {
+                        type: String
+                    }
+                },
+                solved: {
+                    type: Number,
+                    default: 0
+                },
+                penalty: {
+                    type: Number,
+                    default: 0
+                },
+                rank: {
+                    type: Number
+                }
+            }
+        ],
+        ratingsCalculated: {
+            type: Boolean,
+            default: false
+        },
+        ratingsCalculatedAt: {
+            type: Date,
+            default: null
+        },
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",

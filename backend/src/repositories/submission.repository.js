@@ -9,7 +9,7 @@ const findById = async (id) => {
 };
 
 const updateById = async (id, data) => {
-    return await Submission.findByIdAndUpdate(id, data, { new: true });
+    return await Submission.findByIdAndUpdate(id, data, { returnDocument: 'after' });
 };
 
 const findByFilter = async (filter, skip, limit) => {

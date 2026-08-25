@@ -14,13 +14,13 @@ const findById = async (id) => {
 
 const updateProfile = async (id, data) => {
     return await User.findByIdAndUpdate(id, data, {
-        new: true,
+        returnDocument: 'after',
         runValidators: true
     }).select("-password");
 }
 
 const updatePassword = async (id, hashPassword) => {
-    return await User.findByIdAndUpdate(id, {password: hashPassword}, {new: true});
+    return await User.findByIdAndUpdate(id, {password: hashPassword}, { returnDocument: 'after' });
 }
 
 module.exports = {

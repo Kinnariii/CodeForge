@@ -15,7 +15,12 @@ const judgeSubmission = async (submissionId, userId) => {
 
     if (submission.user._id.toString() !== userId.toString()) throw new Error("Unauthorized");
 
-    if (submission.status === "running") throw new Error("Submission is already being judged");
+    // If submission is already in a final state, skip re-evaluating
+    const FINAL_STATES = ["accepted", "wrong_answer", "compile_error", "runtime_error", "time_limit_exceeded"];
+    if (FINAL_STATES.includes(submission.status)) {
+        console.log(`Submission ${submissionId} already in final state: ${submission.status}`);
+        return submission;
+    }
 
     const problemId = submission.problem._id || submission.problem;
 

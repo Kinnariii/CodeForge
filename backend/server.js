@@ -5,6 +5,7 @@ const app = require("./src/app");
 
 const connectDB = require("./src/config/database");
 const { connectRedis } = require("./src/config/redis");
+const {startContestRatingScheduler } = require("./src/services/contestRatingScheduler.service");
 
 require("./src/workers/submission.worker");
 
@@ -12,7 +13,10 @@ const PORT = process.env.PORT || 3000;
 
 connectDB().then(async () => {
 
+
     await connectRedis();
+
+    startContestRatingScheduler();
 
     app.listen(PORT, () => {
         console.log(`🚀 Server running on port ${PORT}`);
