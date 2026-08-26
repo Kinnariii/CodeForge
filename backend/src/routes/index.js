@@ -8,7 +8,7 @@ const submissionRoutes = require("./submission.routes");
 const testcaseRoutes = require("./testcase.routes");
 const contestRoutes = require("./contest.routes");
 const leaderboardRoutes = require("./leaderboard.routes");
-
+const battleRoutes = require("./battle.routes");
 const router = express.Router();
 
 router.get('/', (req,res)=>{
@@ -51,6 +51,8 @@ router.use("/submissions", submissionRoutes);
 router.use("/testcases", testcaseRoutes);
 
 router.use("/contests", contestRoutes);
+
+router.use("/battles", battleRoutes);
 
 router.use(leaderboardRoutes);
 
