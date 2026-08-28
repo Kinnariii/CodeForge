@@ -5,12 +5,14 @@ import Login        from "./pages/Login";
 import Register     from "./pages/Register";
 import ProblemList  from "./pages/ProblemList";
 import ProblemDetail from "./pages/ProblemDetail";
-import Contests     from "./pages/Contests";
+import BattleLobby   from "./pages/BattleLobby";
+import BattleArena   from "./pages/BattleArena";
+import Contests      from "./pages/Contests";
 import ContestDetail from "./pages/ContestDetail";
 import CreateContest from "./pages/CreateContest";
-import Submissions  from "./pages/Submissions";
-import Profile      from "./pages/Profile";
-import NotFound     from "./pages/NotFound";
+import Submissions   from "./pages/Submissions";
+import Profile       from "./pages/Profile";
+import NotFound      from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -28,6 +30,14 @@ function App() {
 
           <Route path="/problems/:id" element={
             <ProtectedRoute><ProblemDetail /></ProtectedRoute>
+          } />
+
+          <Route path="/battle" element={
+            <ProtectedRoute><BattleLobby /></ProtectedRoute>
+          } />
+
+          <Route path="/battle/:battleId" element={
+            <ProtectedRoute><BattleArena /></ProtectedRoute>
           } />
 
           <Route path="/contests" element={
