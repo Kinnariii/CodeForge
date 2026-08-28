@@ -42,6 +42,17 @@ const getBattleById = async (battleId) => {
     return battle;
 };
 
+const getPlayerNumber = async (battleId, userId) => {
+    const battle = await battleRepository.findBattleById(battleId);
+    if(!battle) throw new ApiError(404, "Battle not found");
+
+    if (battle.player1.user._id.toString() === userId.toString()) return 1;
+
+    if (battle.player2.user._id.toString() === userId.toString())return 2;
+
+    throw new ApiError(403, "You are not a player in this battle");
+}
+
 module.exports = {
-    createBattle, getBattleById
+    createBattle, getBattleById, getPlayerNumber 
 };

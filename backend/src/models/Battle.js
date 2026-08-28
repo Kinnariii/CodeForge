@@ -11,7 +11,7 @@ const playerSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
-        findalRating: {
+        finalRating: {
             type: Number,
             default: null
         },
@@ -33,9 +33,7 @@ const playerSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum: [
-                "waiting", "playing", "submitted", "won", "lost", "draw", "disconnected"
-            ],
+            enum: ["waiting", "playing", "submitted", "won", "lost", "draw", "disconnected"],
             default: "waiting"
         }
     }, {
@@ -65,9 +63,7 @@ const battleSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum: [
-                "waiting", "in_progress", "completed", "abandoned"
-            ],
+            enum: ["waiting", "in_progress", "completed", "abandoned"],
             default: "waiting"
         },
         startTime: {
@@ -84,9 +80,7 @@ const battleSchema = new mongoose.Schema(
         },
         endReason: {
             type: String,
-            enum: [
-                "accepted", "timeout", "surrender", "disconnect", "draw"
-            ],
+            enum: ["accepted", "timeout", "surrender", "disconnect", "draw"],
             default: null
         }
     }, {

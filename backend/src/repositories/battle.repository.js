@@ -15,6 +15,16 @@ const updateBattle = async (battleId, updateData) => {
     return await Battle.findByIdAndUpdate(battleId, updateData, {new : true});
 }
 
+const updatePlayer = async (battleId, playerNumber, updateData) => {
+
+    const update = {};
+    for(const [key, value] of Object.entries(updateData)) {
+        update[`player${playerNumber}.${key}`] = value;
+    }
+
+    return await Battle.findByIdAndUpdate( battleId, { $set: update }, { new: true });
+};
+
 module.exports = {
-    createBattle, findBattleById, updateBattle
+    createBattle, findBattleById, updateBattle, updatePlayer
 };

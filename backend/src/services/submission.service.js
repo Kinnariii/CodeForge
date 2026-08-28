@@ -18,12 +18,14 @@ const createSubmission = async (submissionData, userId) => {
         problem: submissionData.problem,
         language: submissionData.language,
         code: submissionData.code,
-        status: "pending"
+        status: "pending",
+        battle: submissionData.battleId || null
     });
 
     await submissionQueue.add("judge-submission", {
             submissionId: submission._id.toString(),
-            userId: userId.toString()
+            userId: userId.toString(),
+            battleId: battleId.toString()
         }
     );
     return submission;

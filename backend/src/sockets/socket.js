@@ -1,15 +1,26 @@
 const jwt = require("jsonwebtoken");
 const { getCache } = require("../utils/cache");
+const registerBattleSocket = require("./battle.socket");
+const { setIO } = require("./socketManager");
 
 const setupSocket = (io) => {
+
+    setIO(io);
 
     // Socket authentication middleware
     io.use(async (socket, next) => {
 
         try{
 
-            const token = socket.handshake.auth?.token;
-            if(token) return next(new Error("Authentication token missing"));
+            const authHeader = socket.handshake.headers?.authorization;
+            const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : authHeader;
+
+            const token = socket.handshake.auth?.token || 
+                          socket.handshake.query?.token || 
+                          socket.handshake.headers?.token ||
+                          bearerToken;
+
+            if(!token) return next(new Error("Authentication token missing"));
 
             // check blacklist
             const isBlacklisted = await getCache(`blacklist:${token}`);
@@ -37,8 +48,17 @@ const setupSocket = (io) => {
 
         console.log(`User connected: ${socket.user.id}`);
 
-        socket.on("disconnect", () => {
+        // Register battle events
+        registerBattleSocket(io, socket);
+
+        // Disconnect
+        socket.on("disconnect", (reason) => {
             console.log(`Socket disconnected: ${socket.id}`, reason)
+
+            // Remove from matchmaking queue
+            const matchmakingService = require("../services/matchmaking.service");
+
+            matchmakingService.removeFromQueue(socket.user.id);
         });
 
     })

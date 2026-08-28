@@ -45,7 +45,12 @@ const submissionSchema = new mongoose.Schema(
         error: {
             type: String,
             default: null
-        }
+        },
+        battle: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Battle",
+            default: null
+        },
     }, {
         timestamps: true
     }
