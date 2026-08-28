@@ -96,7 +96,7 @@ function ContestDetail() {
     setJoinMsg({ text: "", type: "" });
     try {
       await joinContest(id);
-      setJoinMsg({ text: "Successfully registered for contest! 🎉", type: "success" });
+      setJoinMsg({ text: "Successfully registered for the contest!", type: "success" });
       fetchContestData();
     } catch (err) {
       setJoinMsg({
@@ -153,9 +153,9 @@ function ContestDetail() {
   };
 
   const getRankBadge = (rank) => {
-    if (rank === 1) return <span className="rank-badge gold">🥇 1</span>;
-    if (rank === 2) return <span className="rank-badge silver">🥈 2</span>;
-    if (rank === 3) return <span className="rank-badge bronze">🥉 3</span>;
+    if (rank === 1) return <span className="rank-badge gold">1</span>;
+    if (rank === 2) return <span className="rank-badge silver">2</span>;
+    if (rank === 3) return <span className="rank-badge bronze">3</span>;
     return <span className="rank-badge normal">#{rank}</span>;
   };
 
@@ -219,7 +219,9 @@ function ContestDetail() {
                 </div>
               </div>
               <div className="cd-meta-item">
-                <span className="meta-icon">👥</span>
+                <span className="meta-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </span>
                 <div>
                   <span className="meta-sub">Participants</span>
                   <strong>{contest.participants?.length || 0} Joined</strong>
@@ -257,7 +259,7 @@ function ContestDetail() {
             className={`cd-tab ${activeTab === "problems" ? "active" : ""}`}
             onClick={() => setActiveTab("problems")}
           >
-            🧩 Problems ({problems.length || (contest.problems?.length || 0)})
+            Problems ({problems.length || (contest.problems?.length || 0)})
           </button>
           <button
             className={`cd-tab ${activeTab === "leaderboard" ? "active" : ""}`}
@@ -266,7 +268,7 @@ function ContestDetail() {
               fetchLeaderboard();
             }}
           >
-            🏆 Live Leaderboard ({leaderboard.length})
+            Live Leaderboard ({leaderboard.length})
           </button>
           <button
             className={`cd-tab ${activeTab === "rules" ? "active" : ""}`}
@@ -281,7 +283,9 @@ function ContestDetail() {
           <div className="cd-tab-content">
             {status === "upcoming" ? (
               <div className="cd-notice-box">
-                <div className="notice-icon">🔒</div>
+                <div className="notice-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                </div>
                 <h3>Problems are Locked</h3>
                 <p>
                   Problems will be revealed automatically when the contest starts at{" "}
@@ -299,7 +303,7 @@ function ContestDetail() {
                 <h3>Contest in Progress</h3>
                 <p>You did not register for this contest before start time. You can still watch the live leaderboard!</p>
                 <button className="btn-join-notice" onClick={() => setActiveTab("leaderboard")}>
-                  View Live Leaderboard 🏆
+                  View Live Leaderboard
                 </button>
               </div>
             ) : problems.length === 0 ? (
@@ -499,7 +503,7 @@ function ContestDetail() {
         {activeTab === "rules" && (
           <div className="cd-tab-content">
             <div className="rules-card">
-              <h3>🏆 Contest Rules & Scoring System</h3>
+              <h3>Contest Rules & Scoring System</h3>
               <ul>
                 <li>
                   <strong>ACM-ICPC Scoring:</strong> The primary ranking criterion is the number of problems solved.

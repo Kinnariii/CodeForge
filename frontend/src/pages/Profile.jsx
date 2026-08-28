@@ -253,7 +253,7 @@ function Profile() {
             <div className="stat-footer-text">
               {totalProblems - solvedProblems > 0
                 ? `${totalProblems - solvedProblems} problems remaining`
-                : "All problems completed! 🎉"}
+                : "All problems completed!"}
             </div>
           </div>
 
@@ -322,7 +322,7 @@ function Profile() {
               return (
                 <div className="rating-card contest-tier-card">
                   <div className="rating-card-top">
-                    <span className="rating-type-tag">🏆 Contest Rating</span>
+                    <span className="rating-type-tag">Contest Rating</span>
                     <span className="tier-badge" style={{ color: tier.color, background: tier.bg }}>
                       {tier.title}
                     </span>
@@ -345,7 +345,7 @@ function Profile() {
               return (
                 <div className="rating-card battle-tier-card">
                   <div className="rating-card-top">
-                    <span className="rating-type-tag">⚔️ Battle Rating</span>
+                    <span className="rating-type-tag">Battle Rating</span>
                     <span className="tier-badge" style={{ color: tier.color, background: tier.bg }}>
                       Gladiator
                     </span>
@@ -371,7 +371,7 @@ function Profile() {
                   <div key={idx} className="rh-row">
                     <div className="rh-left">
                       <span className={`rh-type-pill ${rh.type}`}>
-                        {rh.type === "contest" ? "🏆 Contest" : "⚔️ Battle"}
+                        {rh.type === "contest" ? "Contest" : "Battle"}
                       </span>
                       <span className="rh-name">{rh.title || "Rated Match"}</span>
                     </div>

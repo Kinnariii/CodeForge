@@ -268,6 +268,27 @@
   color: var(--red);
 }
 
+/* ─── ADMIN CREATE BUTTON ──────────────────────────────────────── */
+
+.pl-create-btn {
+  margin-left: auto;
+  padding: 8px 16px;
+  background: var(--orange);
+  color: #000;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.pl-create-btn:hover {
+  background: var(--orange-hover);
+  transform: translateY(-1px);
+}
+
 
 /* ─── TABLE ───────────────────────────────────────────────────── */
 
@@ -308,6 +329,57 @@
 .th-diff {
   width: 110px;
   text-align: center;
+}
+
+.th-actions {
+  width: 150px;
+  text-align: right;
+}
+
+.td-actions {
+  text-align: right;
+  padding: 10px 16px;
+}
+
+.pl-action-btns {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pl-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.pl-action-btn.edit {
+  background: var(--orange-dim);
+  color: var(--orange);
+  border-color: rgba(255, 161, 22, 0.25);
+}
+
+.pl-action-btn.edit:hover {
+  background: var(--orange);
+  color: #000;
+}
+
+.pl-action-btn.delete {
+  background: var(--red-dim);
+  color: var(--red);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.pl-action-btn.delete:hover {
+  background: var(--red);
+  color: #fff;
 }
 
 

@@ -162,6 +162,28 @@
   gap: 10px;
 }
 
+/* EDIT PROBLEM (ADMIN) */
+.dp-edit-problem-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: var(--radius-md);
+  background: var(--orange-dim);
+  color: var(--orange);
+  border: 1px solid rgba(255, 161, 22, 0.3);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dp-edit-problem-btn:hover {
+  background: var(--orange);
+  color: #000;
+  transform: translateY(-1px);
+}
+
 /* RUN BUTTON */
 .dp-run-btn {
   display: inline-flex;

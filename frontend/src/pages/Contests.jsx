@@ -47,7 +47,7 @@ function Contests() {
       await joinContest(contestId);
       setJoinMessage({
         id: contestId,
-        text: "Successfully registered for contest! 🎉",
+        text: "Successfully registered for the contest!",
         type: "success"
       });
       // Refresh list to update participants
@@ -143,7 +143,7 @@ function Contests() {
         <section className="contests-hero">
           <div className="hero-badge">
             <span className="live-dot" />
-            Competitive Arena
+            Live Competitive Arena
           </div>
           <h1 className="hero-title">
             CodeForge <span className="gradient-text">Contests</span>
@@ -227,7 +227,9 @@ function Contests() {
           <div className="contests-grid">
             {filteredContests.length === 0 ? (
               <div className="empty-contests">
-                <div className="empty-icon">🏆</div>
+                <svg className="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M8 21h8M12 17v4M7 4H4a1 1 0 00-1 1v3c0 3 2 5.5 4.5 6.5M17 4h3a1 1 0 011 1v3c0 3-2 5.5-4.5 6.5M5 4h14v8a7 7 0 01-14 0V4z" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
                 <h3>No Contests Found</h3>
                 <p>There are no contests in this category right now.</p>
               </div>
@@ -248,7 +250,7 @@ function Contests() {
                         {status.toUpperCase()}
                       </div>
                       <span className="duration-pill">
-                        ⏱️ {formatDuration(contest.startTime, contest.endTime)}
+                        {formatDuration(contest.startTime, contest.endTime)}
                       </span>
                     </div>
 
@@ -271,12 +273,12 @@ function Contests() {
                       </div>
                       <div className="meta-item">
                         <span className="meta-label">Participants</span>
-                        <span className="meta-val">👥 {participantCount}</span>
+                        <span className="meta-val">{participantCount}</span>
                       </div>
                       <div className="meta-item">
                         <span className="meta-label">Problems</span>
                         <span className="meta-val">
-                          🧩 {status === "upcoming" ? "Masked" : `${problemCount} Problems`}
+                          {status === "upcoming" ? "Hidden" : `${problemCount} Problems`}
                         </span>
                       </div>
                     </div>
@@ -309,7 +311,7 @@ function Contests() {
                         <>
                           {isJoined ? (
                             <button className="btn-registered" disabled>
-                              ✓ Registered
+                              Registered
                             </button>
                           ) : (
                             <button
@@ -334,7 +336,7 @@ function Contests() {
                           className="btn-enter"
                           onClick={() => navigate(`/contests/${contest._id}`)}
                         >
-                          {isJoined ? "Enter Arena 🚀" : "View Live Contest 🔴"}
+                          {isJoined ? "Enter Arena" : "View Live Contest"}
                         </button>
                       )}
 
@@ -343,7 +345,7 @@ function Contests() {
                           className="btn-results"
                           onClick={() => navigate(`/contests/${contest._id}`)}
                         >
-                          View Results & Leaderboard 🏆
+                          View Results & Leaderboard
                         </button>
                       )}
                     </div>

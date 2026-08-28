@@ -480,19 +480,28 @@ function BattleArena() {
                   className={`console-tab-btn ${consoleMode === "testcases" ? "active" : ""}`}
                   onClick={() => setConsoleMode("testcases")}
                 >
-                  <span>📋</span> Testcases
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                  </svg>
+                  Testcases
                 </button>
                 <button 
                   className={`console-tab-btn ${consoleMode === "run" ? "active" : ""}`}
                   onClick={() => setConsoleMode("run")}
                 >
-                  <span>⚡</span> Run Result
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                  Run Result
                 </button>
                 <button 
                   className={`console-tab-btn ${consoleMode === "submit" ? "active" : ""}`}
                   onClick={() => setConsoleMode("submit")}
                 >
-                  <span>🚀</span> Submission
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Submission
                 </button>
               </div>
 
@@ -578,7 +587,7 @@ function BattleArena() {
                           </span>
                         </div>
                         <div className="verdict-metrics">
-                          ⏱ {runResult.runtime || 0}ms | 💾 {runResult.memory || 0}KB
+                          Runtime: {runResult.runtime || 0}ms | Memory: {runResult.memory || 0}KB
                         </div>
                       </div>
 
@@ -650,7 +659,7 @@ function BattleArena() {
                         </div>
                         {submitResult.runtime != null && (
                           <div className="verdict-metrics">
-                            ⏱ {submitResult.runtime}ms | 💾 {submitResult.memory}KB
+                            Runtime: {submitResult.runtime}ms | Memory: {submitResult.memory}KB
                           </div>
                         )}
                       </div>
@@ -752,7 +761,7 @@ function BattleArena() {
         <div className="gameover-modal-overlay">
           <div className={`gameover-card ${isWinner ? "victory" : isDraw ? "draw" : "defeat"}`}>
             <div className="gameover-icon">
-              {isWinner ? "🏆" : isDraw ? "🤝" : "💀"}
+              {isWinner ? "Victory" : isDraw ? "Draw" : "Defeat"}
             </div>
             
             <h2 className="gameover-title">

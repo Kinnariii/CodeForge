@@ -117,7 +117,7 @@ function BattleLobby() {
         
         {/* Header */}
         <div className="lobby-header">
-          <div className="lobby-badge">⚔️ Competitive 1v1 Arena</div>
+          <div className="lobby-badge">Competitive 1v1 Arena</div>
           <h1 className="lobby-title">Live Code Duels</h1>
           <p className="lobby-subtitle">
             Match against developers in your rating bracket. Solve the algorithmic challenge first to claim Elo points!
@@ -174,7 +174,11 @@ function BattleLobby() {
                 <div className="radar-container">
                   <div className="radar-pulse-ring" />
                   <div className="radar-sweep" />
-                  <span className="radar-core-icon">⚔️</span>
+                  <span className="radar-core-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="32" height="32">
+                      <path d="M14.5 3.5a7 7 0 010 17M9.5 6.5a4 4 0 010 11M4 12h1m14 0h1" strokeLinecap="round"/>
+                    </svg>
+                  </span>
                 </div>
                 <div className="searching-timer">{formatElapsed(elapsed)}</div>
                 <p className="searching-desc">Searching for an opponent (Rating: {Math.max(0, rating - 200)} - {rating + 200})...</p>
@@ -184,8 +188,10 @@ function BattleLobby() {
               </>
             ) : (
               <>
-                <div style={{ fontSize: "64px", marginBottom: "18px", filter: "drop-shadow(0 0 20px rgba(255, 161, 22, 0.4))" }}>
-                  ⚔️
+                <div style={{ marginBottom: "18px" }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="1.5" style={{ width: "64px", height: "64px", filter: "drop-shadow(0 0 16px rgba(255, 161, 22, 0.4))" }}>
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
                 <h3 style={{ fontSize: "20px", fontWeight: "800", color: "#fff", marginBottom: "8px" }}>
                   Ready for Battle?
@@ -194,7 +200,7 @@ function BattleLobby() {
                   Enter the live matchmaking queue to face a coder of similar skill level.
                 </p>
                 <button className="find-match-btn" onClick={handleStartSearch}>
-                  <span>⚔️</span> Find Match Now
+                  Find Match Now
                 </button>
               </>
             )}
@@ -203,22 +209,30 @@ function BattleLobby() {
           {/* Right: Rules & Scoring Info */}
           <div className="lobby-card battle-info-card">
             <h3 className="info-card-title">
-              <span>📜</span> Battle Rules
+              Battle Rules
             </h3>
             <div className="rule-item">
-              <span className="rule-icon">⚡</span>
+              <span className="rule-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </span>
               <div><strong>First to Solve Wins:</strong> The first player whose submission passes 100% of test cases immediately wins.</div>
             </div>
             <div className="rule-item">
-              <span className="rule-icon">📊</span>
+              <span className="rule-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </span>
               <div><strong>Live Opponent Progress:</strong> Track how many test cases your opponent has passed in real-time.</div>
             </div>
             <div className="rule-item">
-              <span className="rule-icon">⏱️</span>
+              <span className="rule-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
               <div><strong>15-Minute Clock:</strong> If time expires, the player with more passed test cases wins or a Draw is awarded.</div>
             </div>
             <div className="rule-item">
-              <span className="rule-icon">📈</span>
+              <span className="rule-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </span>
               <div><strong>Elo Rating Stakes:</strong> Win rating points on victory, lose points on defeat.</div>
             </div>
           </div>
@@ -229,7 +243,7 @@ function BattleLobby() {
         {matchData && (
           <div className="match-found-overlay">
             <div className="match-found-modal">
-              <div className="match-found-title">🔥 MATCH FOUND! 🔥</div>
+              <div className="match-found-title">MATCH FOUND!</div>
               <div className="match-found-sub">Starting Battle Arena in 3 seconds...</div>
 
               <div className="vs-faceoff">

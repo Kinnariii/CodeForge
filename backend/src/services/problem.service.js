@@ -102,10 +102,18 @@ const getProblemById = async (id) => {
     return problem;
 };
 
+const TestCase = require("../models/TestCase");
+
 const deleteProblem = async (id) => {
     const problem = await problemRepository.deleteById(id);
     if(!problem){
         throw new Error("Problem not found");
+    }
+
+    try {
+        await TestCase.deleteMany({ problem: id });
+    } catch (e) {
+        console.error("Failed to clean up testcases for deleted problem:", e);
     }
 
     const cacheKey = `problem:${id}`;

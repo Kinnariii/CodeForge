@@ -10,7 +10,7 @@ function Dashboard() {
 
   return (
     <div style={{ padding: "40px", fontFamily: "sans-serif" }}>
-      <h1>Welcome to CodeForge 🚀</h1>
+      <h1>Welcome to CodeForge</h1>
       <p>You are logged in. This is a placeholder — build the Problem List page here next.</p>
       <button onClick={handleLogout} style={{ marginTop: "20px", cursor: "pointer" }}>
         Logout

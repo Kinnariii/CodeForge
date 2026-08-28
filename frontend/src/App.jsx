@@ -10,6 +10,8 @@ import BattleArena   from "./pages/BattleArena";
 import Contests      from "./pages/Contests";
 import ContestDetail from "./pages/ContestDetail";
 import CreateContest from "./pages/CreateContest";
+import CreateProblem from "./pages/CreateProblem";
+import EditProblem   from "./pages/EditProblem";
 import Submissions   from "./pages/Submissions";
 import Profile       from "./pages/Profile";
 import NotFound      from "./pages/NotFound";
@@ -28,8 +30,16 @@ function App() {
             <ProtectedRoute><ProblemList /></ProtectedRoute>
           } />
 
+          <Route path="/problems/create" element={
+            <ProtectedRoute><CreateProblem /></ProtectedRoute>
+          } />
+
           <Route path="/problems/:id" element={
             <ProtectedRoute><ProblemDetail /></ProtectedRoute>
+          } />
+
+          <Route path="/problems/:id/edit" element={
+            <ProtectedRoute><EditProblem /></ProtectedRoute>
           } />
 
           <Route path="/battle" element={

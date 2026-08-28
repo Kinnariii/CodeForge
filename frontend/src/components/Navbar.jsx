@@ -30,7 +30,7 @@ function Navbar() {
 
   const navItems = [
     { key: "problems",    label: "Problems",    path: "/problems" },
-    { key: "battle",      label: "⚔️ 1v1 Battle", path: "/battle" },
+    { key: "battle",      label: "1v1 Battle",  path: "/battle" },
     { key: "contests",    label: "Contests",    path: "/contests" },
     { key: "submissions", label: "Submissions", path: "/submissions" },
     { key: "profile",     label: "Profile",     path: "/profile" },

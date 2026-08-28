@@ -4,6 +4,7 @@ import "./ProblemDetail.css";
 import { getProblemById, getProblems } from "../services/problemService";
 import { getContestById } from "../services/contestService";
 import { createSubmission, runCode, getMySubmissions, getSubmissionById } from "../services/submissionService";
+import { useAuth } from "../context/AuthContext";
 
 const STATUS_LABELS = {
   accepted: "Accepted",
@@ -18,6 +19,7 @@ const STATUS_LABELS = {
 function ProblemDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const textareaRef = useRef(null);
   const gutterRef = useRef(null);
 
@@ -490,6 +492,20 @@ function ProblemDetail() {
           )}
 
           <div className="dp-actions-group">
+            {user?.role === "admin" && !contestId && (
+              <button
+                className="dp-edit-problem-btn"
+                onClick={() => navigate(`/problems/${id}/edit`)}
+                title="Edit problem and test cases"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="13" height="13">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
+                Edit
+              </button>
+            )}
+
             {/* RUN BUTTON */}
             <button
               id="run-code-btn"

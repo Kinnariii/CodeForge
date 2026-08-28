@@ -273,7 +273,7 @@ function CreateContest() {
                 className="btn-create-submit"
                 disabled={loading}
               >
-                {loading ? "Creating Contest..." : "Publish Contest 🚀"}
+                {loading ? "Creating Contest..." : "Publish Contest"}
               </button>
             </div>
           </form>
