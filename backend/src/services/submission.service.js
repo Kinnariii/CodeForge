@@ -25,7 +25,7 @@ const createSubmission = async (submissionData, userId) => {
     await submissionQueue.add("judge-submission", {
             submissionId: submission._id.toString(),
             userId: userId.toString(),
-            battleId: battleId.toString()
+            battleId: submissionData.battleId ? submissionData.battleId.toString() : null
         }
     );
     return submission;

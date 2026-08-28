@@ -118,7 +118,8 @@ const getMyStats = async (req, res) => {
 
 const runCode = async (req, res) => {
     try {
-        const { problem, language = "cpp", code } = req.body;
+        const problem = req.body.problem || req.body.problemId;
+        const { language = "cpp", code } = req.body;
         if (!problem) {
             return res.status(400).json({
                 success: false,

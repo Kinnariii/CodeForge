@@ -6,15 +6,15 @@ const testCaseSchema = new mongoose.Schema(
         problem: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Problem",
-            require: true
+            required: true
         },
         input: {
             type: String,
-            require: true
+            required: true
         },
         expectedOutput: {
             type: String,
-            require: true
+            required: true
         },
         isHidden: {
             type: Boolean,

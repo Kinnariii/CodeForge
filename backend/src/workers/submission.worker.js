@@ -28,9 +28,15 @@ const submissionWorker = new Worker("submission-queue", async (job) => {
         // 4. Send judge result to both battle players
         io.to(roomId).emit("battle_submission_result", {
             submissionId,
+            userId: userId.toString(),
             status: result.status,
             passedTests: result.passedTests,
-            totalTests: result.totalTests
+            totalTests: result.totalTests,
+            runtime: result.runtime,
+            memory: result.memory,
+            error: result.error,
+            sampleResults: result.sampleResults,
+            failedCase: result.failedCase
         });
         // If all testcases are accepted, finish battle and update ratings!
         if (result.status === "accepted") {
