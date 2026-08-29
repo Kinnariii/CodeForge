@@ -1,6 +1,12 @@
 const IORedis = require("ioredis");
 
-const connection = new IORedis(process.env.REDIS_URL || "redis://localhost:6379", { maxRetriesPerRequest: null});
+const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
+const isTLS = redisUrl.startsWith("rediss://");
+
+const connection = new IORedis(redisUrl, {
+    maxRetriesPerRequest: null,
+    ...(isTLS && { tls: {} })
+});
 
 connection.on("connect", () => {
     console.log("BullMQ Redis connected");
