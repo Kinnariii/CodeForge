@@ -2,551 +2,551 @@
 
 # ⚡ CodeForge
 
-### Full-Stack Competitive Programming & Real-Time Algorithmic Battle Platform
+### A Full-Stack Competitive Programming Platform
 
-**Practice Algorithms • Compete in 1v1 PvP Battles • Dominate Timed Contests • Climb ELO Leaderboards**
+**Solve Problems · Fight in 1v1 Battles · Join Contests · Climb the Leaderboard**
 
-[![Live Demo](https://img.shields.io/badge/🌐%20Live%20Platform-code--forge--iota--ten.vercel.app-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://code-forge-iota-ten.vercel.app)
-[![Backend API](https://img.shields.io/badge/🚀%20Live%20Backend-Render%20Cloud-00c58e?style=for-the-badge&logo=render&logoColor=white)](https://codeforge-backend-10w2.onrender.com/health)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-2563eb?style=flat&logo=vercel&logoColor=white)](https://code-forge-iota-ten.vercel.app)
+&nbsp;
+[![Backend API](https://img.shields.io/badge/Backend-Render-059669?style=flat&logo=render&logoColor=white)](https://codeforge-backend-10w2.onrender.com/health)
+&nbsp;
+[![License](https://img.shields.io/badge/License-MIT-gray?style=flat)](LICENSE)
 
 <br/>
 
-![React](https://img.shields.io/badge/React%2019-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite%206-646CFF?style=flat-square&logo=vite&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js%2020-339933?style=flat-square&logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express%204-000000?style=flat-square&logo=express&logoColor=white)
-![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/Upstash%20Redis-FF4438?style=flat-square&logo=redis&logoColor=white)
-![BullMQ](https://img.shields.io/badge/BullMQ%20Queue-9B59B6?style=flat-square&logoColor=white)
-![Socket.io](https://img.shields.io/badge/Socket.io%20Realtime-010101?style=flat-square&logo=socket.io&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker%20Container-2496ED?style=flat-square&logo=docker&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT%20Auth-000000?style=flat-square&logo=json-web-tokens&logoColor=white)
-![UptimeRobot](https://img.shields.io/badge/UptimeRobot-Monitored-1abc9c?style=flat-square&logo=uptimerobot&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-black?style=flat&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat&logo=redis&logoColor=white)
+![BullMQ](https://img.shields.io/badge/BullMQ-7c3aed?style=flat)
+![Socket.io](https://img.shields.io/badge/Socket.io-black?style=flat&logo=socketdotio&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-0284c7?style=flat&logo=docker&logoColor=white)
 
 </div>
 
 ---
 
-## 📖 Table of Contents
+## 📌 What is CodeForge?
 
-- [Overview](#-overview)
-- [Live Deployments](#-live-deployments)
-- [Core Features](#-core-features)
-  - [1. Problem Solving & Code Execution](#1-problem-solving--code-execution)
-  - [2. 1v1 Real-Time Battle Arena (PvP)](#2-1v1-real-time-battle-arena-pvp)
-  - [3. Timed Contests & ICPC-Style Scoring](#3-timed-contests--icpc-style-scoring)
-  - [4. Dual ELO Rating System](#4-dual-elo-rating-system)
-  - [5. Authentication & Security](#5-authentication--security)
-  - [6. Admin Management Suite](#6-admin-management-suite)
-- [System Architecture](#-system-architecture)
-- [Deep Dive: Code Execution Engine](#-deep-dive-code-execution-engine)
-- [Data Models & Schema](#-data-models--schema)
-- [API Reference](#-api-reference)
-- [WebSocket Event Specification](#-websocket-event-specification)
-- [Tech Stack Details](#-tech-stack-details)
-- [Project Directory Structure](#-project-directory-structure)
-- [Local Development Setup](#-local-development-setup)
-- [Environment Variables](#-environment-variables)
-- [Production Deployment](#-production-deployment)
-- [Author & Acknowledgments](#-author--acknowledgments)
+**CodeForge** is a competitive programming platform built from scratch — similar to LeetCode and Codeforces. Users can solve algorithmic problems, fight real-time 1v1 coding battles, participate in timed contests, and track their ELO rating progress over time.
+
+The project is **fully deployed and live:**
+- **Frontend:** Vercel → [code-forge-iota-ten.vercel.app](https://code-forge-iota-ten.vercel.app)
+- **Backend:** Render (Dockerized) → [codeforge-backend-10w2.onrender.com](https://codeforge-backend-10w2.onrender.com)
+
+> ⚠️ Backend is on Render's free tier — it may take ~20–30s to wake up on first request.
 
 ---
 
-## 📌 Overview
+## ✨ Features
 
-**CodeForge** is a full-featured, production-ready competitive programming and battle platform engineered from the ground up to deliver a low-latency, scalable online judging experience inspired by platforms like LeetCode and Codeforces.
+### 🧩 Problem Solving
+- Browse problems filtered by difficulty: **Easy**, **Medium**, **Hard**
+- Built-in **C++ code editor** with line numbers and tab support
+- **Run Code** — test against visible sample cases instantly (no DB save)
+- **Submit** — runs code against all hidden test cases via a background queue
+- Verdicts: `Accepted`, `Wrong Answer`, `Compile Error`, `Runtime Error`, `Time Limit Exceeded`
+- Full submission history with runtime and memory stats per submission
 
-It solves real-world distributed systems challenges:
-- **Asynchronous Code Execution:** Offloads heavy C++ compilation and multi-test execution to a background queue (BullMQ + Redis) to protect web process responsiveness.
-- **Dual Execution Engine:** Operates in a hardened Docker container sandbox locally and dynamically falls back to an optimized native direct execution engine in constrained containerized cloud platforms.
-- **Bi-Directional Real-Time Communication:** Facilitates 1v1 algorithmic duels using Socket.io rooms, tracking opponent submission states and test completion in real-time.
-- **Autonomous Rating Lifecycle:** Background cron schedulers dynamically calculate post-contest rating adjustments using official ELO formulas once contests conclude.
+### ⚔️ 1v1 Battle Arena
+- Enter a **matchmaking lobby** — get auto-paired with another online user
+- Both players receive the **same problem** at the same time
+- First to get `Accepted` on all test cases wins the battle
+- Live opponent progress updates via **WebSockets** (tests passed, verdict, etc.)
+- Battle **ELO rating** updates automatically after every match
+
+```
+Player 1 ──[ Matchmaking ]──► CodeForge Server ◄──[ Matchmaking ]── Player 2
+                                    │
+                         Creates 1v1 Battle Room
+                                    │
+               Both solve simultaneously ──► First to AC wins!
+```
+
+### 🏆 Contests
+- Join scheduled **timed programming contests**
+- Multiple problems per contest
+- **Live leaderboard** — ICPC-style scoring (problems solved + time penalty)
+- Rating gets automatically calculated by a **background cron job** once the contest ends
+
+### 📊 Rating System
+- Two separate ratings: **Contest Rating** and **Battle Rating**
+- Both start at **1200** and change based on performance
+- Full rating history stored for each user — tracked over time
+
+### 🔐 Authentication & Security
+- JWT-based login/logout with **Redis token blacklisting** (tokens are immediately invalidated on logout)
+- Passwords hashed using **bcryptjs**
+- API rate limiting to prevent abuse
+- Code execution with **timeout limits and memory caps**
+
+### 🛡️ Admin Panel
+- Create, edit, and delete problems
+- Add/remove test cases (visible or hidden)
+- Create and schedule contests
 
 ---
 
-## 🌐 Live Deployments
+## 🏗️ How It Works — Architecture
 
-| Component | Platform | URL |
+```
+┌──────────────────────────────────┐
+│     Browser (React + Vite)       │
+│   Hosted on Vercel (Global CDN)  │
+└──────────────┬───────────────────┘
+               │  HTTP REST + WebSocket
+┌──────────────▼───────────────────────────────────────────┐
+│             Express.js Backend (Node.js 20)              │
+│           Running in Docker on Render Cloud              │
+│                                                          │
+│  ┌─────────────┐   ┌──────────────┐   ┌───────────────┐  │
+│  │  REST APIs  │   │  Socket.io   │   │    BullMQ     │  │
+│  │ (Auth, Sub, │   │  (Battles,   │   │  (Job Queue   │  │
+│  │  Contest..) │   │  Matchmaking)│   │  for judging) │  │
+│  └──────┬──────┘   └──────────────┘   └───────┬───────┘  │
+│         │                                     │          │
+│  ┌──────▼─────────────────────────────────────▼───────┐  │
+│  │               Judge Service                        │  │
+│  │  1. Wrap user code in a complete C++ program        │  │
+│  │  2. Compile with g++                               │  │
+│  │  3. Run against each test case, capture output     │  │
+│  │  4. Compare output vs expected → give verdict      │  │
+│  └────────────────────────────────────────────────────┘  │
+└──────────────────────┬────────────────────┬──────────────┘
+                       │                    │
+         ┌─────────────▼──────┐   ┌─────────▼──────────────┐
+         │  MongoDB Atlas     │   │  Upstash Redis         │
+         │  - Users           │   │  - BullMQ job queue    │
+         │  - Problems        │   │  - Blacklisted tokens  │
+         │  - Submissions     │   │  - Rate limit counters │
+         │  - Contests        │   └────────────────────────┘
+         │  - Battles         │
+         └────────────────────┘
+```
+
+---
+
+## ⚙️ Code Execution Engine
+
+This is the core of the platform. When a user submits C++ code, it can't just be run directly — it needs a proper `main()` with input reading and output printing. Here's how it works:
+
+```
+Step 1 — Code Wrapping
+  User writes a Solution class → system wraps it in a complete C++ program
+  with input parsing (int, vector<int>, string, etc.) and a main() function
+
+Step 2 — Compilation
+  g++ -O1 main.cpp -o main
+  If compilation fails → returns Compile Error with the g++ output
+
+Step 3 — Test Case Execution
+  For each test case: ./main < input.txt
+  5 second timeout per test case
+  Captures stdout, stderr, and execution time
+
+Step 4 — Verdict
+  Compare actual output vs expected output (after trimming whitespace)
+  → Accepted / Wrong Answer / TLE / Runtime Error
+```
+
+**Two execution modes:**
+- **Docker mode** (local/self-hosted): Runs in isolated containers with `--network none`, memory limit 128MB, CPU limit 0.5 cores
+- **Direct mode** (Render cloud): Runs `g++` natively inside a temp directory, cleaned up automatically
+
+---
+
+## 🗄️ Database Schema
+
+### Entity Relationships
+
+```mermaid
+erDiagram
+    User ||--o{ Submission : submits
+    User ||--o{ Battle : competes_in
+    User ||--o{ Contest : registers_for
+    Problem ||--o{ TestCase : contains
+    Problem ||--o{ Submission : evaluated_on
+    Contest ||--o{ Problem : includes
+    Battle ||--|| Problem : plays_on
+    Battle ||--o| User : winner
+```
+
+### Collections Overview
+
+#### 👤 `users`
+| Field | Type | Description |
 |---|---|---|
-| **Frontend Application** | Vercel (Global Edge CDN) | [https://code-forge-iota-ten.vercel.app](https://code-forge-iota-ten.vercel.app) |
-| **Backend API Server** | Render (Dockerized Service) | [https://codeforge-backend-10w2.onrender.com](https://codeforge-backend-10w2.onrender.com) |
-| **Health Check Monitor** | Render `/health` | [https://codeforge-backend-10w2.onrender.com/health](https://codeforge-backend-10w2.onrender.com/health) |
-| **Database Cluster** | MongoDB Atlas (Cloud M0) | Fully Managed Cloud Cluster |
-| **Distributed Cache & Queue** | Upstash Redis (TLS / rediss://) | Cloud Serverless Redis |
-| **Liveness Keep-Alive** | UptimeRobot | Ping every 5 minutes to prevent cold sleep |
+| `_id` | ObjectId | Unique User ID |
+| `name` | String | Display name |
+| `email` | String | Unique email address |
+| `password` | String | Hashed password (`bcryptjs`) |
+| `role` | String | `'user'` or `'admin'` |
+| `contestRating` | Number | Contest rating (starts at `1200`) |
+| `battleRating` | Number | 1v1 Battle rating (starts at `1200`) |
+| `ratingHistory` | Array | Audit log of rating changes with timestamps |
 
-> ℹ️ *Tip: Because the backend is hosted on a free cloud tier, initial cold-starts can take ~20–40s if the service is reviving.*
+#### 🧩 `problems`
+| Field | Type | Description |
+|---|---|---|
+| `_id` | ObjectId | Unique Problem ID |
+| `problemNumber`| Number | Unique incremental problem number |
+| `title` | String | Problem title |
+| `description` | String | Problem statement, input/output formats & constraints |
+| `difficulty` | String | `'Easy'` \| `'Medium'` \| `'Hard'` |
+| `functionName` | String | Target function name inside `Solution` class |
+| `starterCode` | String | Boilerplate code template shown in editor |
+| `judgeConfig` | Object | `{ returnType: String, parameters: [{ name, type }] }` |
 
----
+#### 🧪 `testcases`
+| Field | Type | Description |
+|---|---|---|
+| `_id` | ObjectId | Unique Test Case ID |
+| `problem` | ObjectId | Ref $\rightarrow$ `problems` |
+| `input` | String | Raw input fed via `stdin` |
+| `expectedOutput`| String | Expected output checked against `stdout` |
+| `isHidden` | Boolean | `false` = visible sample test case, `true` = hidden judge case |
 
-## ✨ Core Features
+#### ⚡ `submissions`
+| Field | Type | Description |
+|---|---|---|
+| `_id` | ObjectId | Unique Submission ID |
+| `user` | ObjectId | Ref $\rightarrow$ `users` |
+| `problem` | ObjectId | Ref $\rightarrow$ `problems` |
+| `code` | String | Submitted C++ source code |
+| `language` | String | `'cpp'` |
+| `status` | String | `'pending'` \| `'accepted'` \| `'wrong_answer'` \| `'compile_error'` \| `'runtime_error'` \| `'time_limit_exceeded'` |
+| `passedTests` | Number | Number of test cases passed |
+| `totalTests` | Number | Total test cases evaluated |
+| `runtime` | Number | Execution time in milliseconds |
+| `memory` | Number | Peak memory usage in KB |
+| `error` | String | Compiler or runtime error message (if any) |
+| `battle` | ObjectId | Ref $\rightarrow$ `battles` (null if practice submission) |
 
-### 1. Problem Solving & Code Execution
-- **Curated Problem Repository:** Filter by difficulty (**Easy**, **Medium**, **Hard**) and tags with search.
-- **Interactive Code Editor:** Embedded in-browser code editor with line gutters, tab indentation handling, and syntax styling.
-- **Sample Execution (`Run Code`):** Instant synchronous execution against visible sample test cases without persisting data to database.
-- **Full Judge Evaluation (`Submit`):** Enqueues code to a distributed BullMQ worker. Evaluates visible & hidden test cases sequentially, calculating peak memory consumption and CPU execution runtime.
-- **Granular Verdicts:**
-  - `Accepted (AC)`
-  - `Wrong Answer (WA)` (with expected vs. received diff)
-  - `Compile Error (CE)` (full compiler output)
-  - `Runtime Error (RE)`
-  - `Time Limit Exceeded (TLE)`
+#### 🏆 `contests`
+| Field | Type | Description |
+|---|---|---|
+| `_id` | ObjectId | Unique Contest ID |
+| `title` | String | Contest title & theme |
+| `description` | String | Rules and guidelines |
+| `startTime` | Date | Contest start timestamp |
+| `endTime` | Date | Contest end timestamp |
+| `problems` | [ObjectId] | Array of Problem references |
+| `participants` | [ObjectId] | Array of registered User references |
+| `finalLeaderboard`| Array | Final ranks, scores, and penalty times |
 
-### 2. 1v1 Real-Time Battle Arena (PvP)
-- **Matchmaking Lobby:** Players join the matchmaking pool; the server pairs candidates based on rating proximity.
-- **Synchronized Room Creation:** Generates a dynamic Socket.io battle room (`battle:<id>`), allocating the same problem simultaneously to both contestants.
-- **Live Progress Telemetry:** Real-time opponent status notifications (e.g., test cases passed, submission verdicts, active typing indicators).
-- **Instant Win Resolution:** The first participant to achieve `Accepted` automatically triggers the win lifecycle, concludes the match, calculates rating deltas, and stores the completed battle audit log.
-
-### 3. Timed Contests & ICPC-Style Scoring
-- **Scheduled Contests:** Contests with strict start and end timestamps.
-- **Participant Registration:** Controlled entry before and during active contest windows.
-- **Live Leaderboard:** Real-time standings using ICPC scoring rules:
-  $$\text{Score} = \text{Problems Solved}$$
-  $$\text{Penalty} = \text{Time taken} + (20\text{ min} \times \text{Wrong Submissions})$$
-- **Automated Rating Engine:** A node-cron daemon periodically polls for ended contests, processes the final leaderboard, computes performance multipliers, and distributes rating updates to all participants.
-
-### 4. Dual ELO Rating System
-- Distinct track records for **Contest Rating** and **Battle Rating**.
-- Default starting rating: **1200**.
-- Complete historical audit trail (`ratingHistory`) stored on the user document for visual progress charting.
-
-### 5. Authentication & Security
-- Secure stateless JWT authentication stored in client local storage with Axios interceptor injection.
-- **Redis Token Blacklisting:** Instant token revocation upon `/logout` to invalidate compromised tokens before expiration.
-- **Password Protection:** Cryptographically hashed with `bcryptjs` (salt rounds: 10).
-- **Execution Sandboxing:** Strict timeout enforcement, memory capping, and non-privileged execution contexts to prevent system compromise.
-- **API Rate Limiting:** Global and endpoint-specific rate limiters (e.g., submission throttling) preventing DoS abuse.
-
-### 6. Admin Management Suite
-- Dedicated administrative interface protected by role-based middleware (`role: "admin"`).
-- Create, edit, and delete problems with full judge config (return types, argument types, starter code, driver generator templates).
-- Test case manager to inject hidden test datasets and visible problem demonstrations.
-- Contest creator with multi-problem assignment and schedule parameters.
-
----
-
-## 🏗️ System Architecture
-
-```
-                                  ┌─────────────────────────────┐
-                                  │      Client (Browser)       │
-                                  │   React 19 + Vite Frontend  │
-                                  └──────────────┬──────────────┘
-                                                 │
-                                ┌────────────────┴────────────────┐
-                                │ HTTP REST APIs & WebSockets     │
-                                └────────────────┬────────────────┘
-                                                 │
-                 ┌───────────────────────────────▼───────────────────────────────┐
-                 │                   Express Backend Server                      │
-                 │                 (Docker on Render Platform)                   │
-                 │                                                               │
-                 │  ┌───────────────────────┐         ┌───────────────────────┐  │
-                 │  │  Express REST API     │         │  Socket.io Server     │  │
-                 │  │  Controllers & Routes │         │  Lobby / 1v1 Battle   │  │
-                 │  └───────────┬───────────┘         └───────────┬───────────┘  │
-                 │              │                                 │              │
-                 │  ┌───────────▼───────────┐                     │              │
-                 │  │     BullMQ Producer   │                     │              │
-                 │  │  (Dispatches to Queue)│                     │              │
-                 │  └───────────┬───────────┘                     │              │
-                 │              │                                 │              │
-                 │  ┌───────────▼───────────┐                     │              │
-                 │  │     BullMQ Consumer   │                     │              │
-                 │  │   (Submission Worker) ├─────────────────────┘              │
-                 │  └───────────┬───────────┘                                    │
-                 │              │                                                │
-                 │  ┌───────────▼──────────────────────────────────────────────┐ │
-                 │  │               Judge Service & Executor                   │ │
-                 │  │   • Code Generator (Generates test harness wrapper)      │ │
-                 │  │   • C++ Direct / Docker Execution Engine                 │ │
-                 │  │   • Sequential Test-Case Verifier                        │ │
-                 │  └──────────────────────────────────────────────────────────┘ │
-                 └───────────────────────┬──────────────────────┬────────────────┘
-                                         │                      │
-                   ┌─────────────────────▼──────┐        ┌──────▼─────────────────────┐
-                   │    MongoDB Atlas Cluster   │        │     Upstash Redis Cloud    │
-                   │   • Users & Profiles       │        │   • BullMQ Queue & Jobs    │
-                   │   • Problems & TestCases   │        │   • Token Blacklist        │
-                   │   • Submissions & Contests │        │   • Leaderboard Cache      │
-                   │   • Battles & Ratings      │        │   • Rate Limiting Counters │
-                   └────────────────────────────┘        └────────────────────────────┘
-```
-
----
-
-## ⚙️ Deep Dive: Code Execution Engine
-
-Online judges cannot execute raw user code directly because competitive programming problems require reading inputs from `stdin` and writing expected formats to `stdout`.
-
-CodeForge implements a **modular 4-stage pipeline**:
-
-```
-[User Solution Class] 
-         │
-         ▼
-[1. Code Generation] ──► Merges Solution with Driver Code, Custom Type Parsers & main()
-         │
-         ▼
-[2. Compilation]    ──► g++ -O1 -Werror=return-type main.cpp -o main
-         │
-         ▼
-[3. Test Execution] ──► Runs binary per test case: ./main < input-X.txt
-         │               Enforces execution timeout (5000ms) & captures runtime
-         │
-         ▼
-[4. Output Diff]    ──► Normalizes whitespaces, checks output vs expected
-```
-
-### Type Serialization Support
-The custom code generator automatically constructs deserializers based on the problem's `judgeConfig`:
-- Primitives: `int`, `long long`, `double`, `bool`, `string`
-- Containers: `vector<int>`, `vector<string>`
-- Custom input parsers for array bracket stripping: `[1, 2, 3]` $\rightarrow$ `vector<int>{1, 2, 3}`
-
-### Dual Mode Execution
-1. **Docker Mode (Production / Self-Hosted):**
-   - Launches an isolated container from `codeforge-cpp-runner:1.1`
-   - Parameters: `--network none --memory 128m --cpus 0.5 --pids-limit 64 --read-only --tmpfs /tmp`
-2. **Direct Mode (Containerized PaaS / Render):**
-   - Compiles using system `g++ -O1` inside a unique ephemeral directory (`/tmp/codeforge-XXXXXX`).
-   - Cleaned up via `finally` blocks guaranteeing zero disk leakages.
-
----
-
-## 🗄️ Data Models & Schema
-
-```
-┌────────────────────────────────┐       ┌────────────────────────────────┐
-│             User               │       │            Problem             │
-├────────────────────────────────┤       ├────────────────────────────────┤
-│ _id: ObjectId                  │       │ _id: ObjectId                  │
-│ name: String                   │       │ problemNumber: Number (Unique) │
-│ email: String (Unique)         │◄──┐   │ title: String                  │
-│ password: Hash                 │   │   │ description: String            │
-│ role: 'user' | 'admin'         │   │   │ difficulty: 'Easy'|'Med'|'Hard'│
-│ contestRating: Number (1200)   │   │   │ functionName: String           │
-│ battleRating: Number (1200)    │   │   │ starterCode: String            │
-│ ratingHistory: [RatingEvent]   │   │   │ judgeConfig: {                 │
-└────────────────────────────────┘   │   │   returnType: String           │
-                                     │   │   parameters: [{name, type}]   │
-┌────────────────────────────────┐   │   │ }                              │
-│           Submission           │   │   └────────────────┬───────────────┘
-├────────────────────────────────┤   │                    │
-│ _id: ObjectId                  │   │                    │
-│ user: Ref<User> ───────────────┼───┤                    │
-│ problem: Ref<Problem> ─────────┼───┼────────────────────┤
-│ code: String                   │   │                    │
-│ language: 'cpp'                │   │   ┌────────────────▼───────────────┐
-│ status: 'pending'|'accepted'|..│   │   │            TestCase            │
-│ passedTests: Number            │   │   ├────────────────────────────────┤
-│ totalTests: Number             │   │   │ _id: ObjectId                  │
-│ runtime: Number (ms)           │   │   │ problem: Ref<Problem>          │
-│ memory: Number (KB)            │   │   │ input: String                  │
-│ error: String                  │   │   │ expectedOutput: String         │
-│ battle: Ref<Battle>            │   │   │ isHidden: Boolean              │
-└────────────────────────────────┘   │   └────────────────────────────────┘
-                                     │
-┌────────────────────────────────┐   │   ┌────────────────────────────────┐
-│            Contest             │   │   │             Battle             │
-├────────────────────────────────┤   │   ├────────────────────────────────┤
-│ _id: ObjectId                  │   │   │ _id: ObjectId                  │
-│ title: String                  │   │   │ player1: { user, rating, .. }  │
-│ description: String            │   └───┼── player2: { user, rating, .. }│
-│ startTime: Date                │       │ problem: Ref<Problem>          │
-│ endTime: Date                  │       │ winner: Ref<User>              │
-│ problems: [Ref<Problem>]       │       │ status: 'waiting'|'in_progress'│
-│ participants: [Ref<User>]      │       │ duration: Number (15 mins)     │
-│ finalLeaderboard: [Entry]      │       │ endReason: 'accepted'|'timeout'│
-└────────────────────────────────┘       └────────────────────────────────┘
-```
+#### ⚔️ `battles`
+| Field | Type | Description |
+|---|---|---|
+| `_id` | ObjectId | Unique Battle ID |
+| `player1` | Object | `{ user: Ref, rating: Number, currentCode: String }` |
+| `player2` | Object | `{ user: Ref, rating: Number, currentCode: String }` |
+| `problem` | ObjectId | Ref $\rightarrow$ `problems` assigned to both players |
+| `winner` | ObjectId | Ref $\rightarrow$ `users` (null if tied or in progress) |
+| `status` | String | `'waiting'` \| `'in_progress'` \| `'finished'` |
+| `duration` | Number | Match duration limit (default: `15` minutes) |
+| `endReason` | String | `'accepted'` \| `'timeout'` \| `'surrender'` |
 
 ---
 
 ## 📡 API Reference
 
-### 🔐 Authentication (`/api/v1/auth`)
-| Endpoint | Method | Access | Description |
-|---|---|---|---|
-| `/register` | `POST` | Public | Register new account with email & password |
-| `/login` | `POST` | Public | Authenticate user & receive JWT token |
-| `/logout` | `POST` | Authenticated | Revoke and blacklist JWT in Redis cache |
+All endpoints are prefixed with `/api/v1`.
 
-### 🧩 Problems (`/api/v1/problems`)
-| Endpoint | Method | Access | Description |
+### Auth (`/auth`)
+| Method | Endpoint | Auth | Description |
 |---|---|---|---|
-| `/` | `GET` | Public | List all problems (supports pagination, search, tags) |
-| `/:id` | `GET` | Public | Retrieve single problem metadata & starter code |
-| `/` | `POST` | **Admin** | Create a new problem with judge schema |
-| `/:id` | `PUT` | **Admin** | Update problem definition, constraints, or starter code |
-| `/:id` | `DELETE` | **Admin** | Remove problem and associated test cases |
+| `POST` | `/register` | Public | Create a new account |
+| `POST` | `/login` | Public | Login and get JWT token |
+| `POST` | `/logout` | User | Invalidate current token |
 
-### ⚡ Submissions (`/api/v1/submissions`)
-| Endpoint | Method | Access | Description |
+### Problems (`/problems`)
+| Method | Endpoint | Auth | Description |
 |---|---|---|---|
-| `/run` | `POST` | Authenticated | Test code against visible sample test cases synchronously |
-| `/` | `POST` | Authenticated | Create official submission & dispatch judging job to queue |
-| `/:id` | `GET` | Authenticated | Poll/query status, runtime, and results of a submission |
-| `/my` | `GET` | Authenticated | Retrieve authenticated user's submission history |
-| `/problem/:id`| `GET` | Authenticated | Retrieve user submissions for a specific problem |
-| `/my/stats` | `GET` | Authenticated | Retrieve user acceptance rate & difficulty breakdown |
+| `GET` | `/` | Public | Get all problems (filter, paginate, search) |
+| `GET` | `/:id` | Public | Get a single problem |
+| `POST` | `/` | Admin | Create a problem |
+| `PUT` | `/:id` | Admin | Update a problem |
+| `DELETE` | `/:id` | Admin | Delete a problem |
 
-### ⚔️ 1v1 Battle (`/api/v1/battles`)
-| Endpoint | Method | Access | Description |
+### Submissions (`/submissions`)
+| Method | Endpoint | Auth | Description |
 |---|---|---|---|
-| `/matchmake` | `POST` | Authenticated | Enter matchmaking queue |
-| `/:id` | `GET` | Authenticated | Fetch active battle session state & participants |
+| `POST` | `/run` | User | Run code on sample test cases (no DB save) |
+| `POST` | `/` | User | Submit code for full judging (queued async) |
+| `GET` | `/:id` | User | Check submission result |
+| `GET` | `/my` | User | My submission history |
+| `GET` | `/problem/:id` | User | My submissions for a specific problem |
+| `GET` | `/my/stats` | User | My acceptance rate and stats |
 
-### 🏆 Contests (`/api/v1/contests`)
-| Endpoint | Method | Access | Description |
+### Battles (`/battles`)
+| Method | Endpoint | Auth | Description |
 |---|---|---|---|
-| `/` | `GET` | Public | Retrieve active, upcoming, and past contests |
-| `/:id` | `GET` | Public | Contest details and problem associations |
-| `/` | `POST` | **Admin** | Create a new timed contest |
-| `/:id/register`| `POST` | Authenticated | Register authenticated user for a contest |
-| `/:id/leaderboard`| `GET` | Public | Fetch real-time contest standings and penalties |
+| `POST` | `/matchmake` | User | Join matchmaking pool |
+| `GET` | `/:id` | User | Get current battle info |
 
-### 👥 Users & Leaderboard (`/api/v1/users`)
-| Endpoint | Method | Access | Description |
+### Contests (`/contests`)
+| Method | Endpoint | Auth | Description |
 |---|---|---|---|
-| `/profile` | `GET` | Authenticated | Current user profile, ratings, and rating history |
-| `/leaderboard` | `GET` | Public | Global user rankings sorted by contest/battle ratings |
+| `GET` | `/` | Public | Get all contests |
+| `GET` | `/:id` | Public | Get contest details |
+| `POST` | `/` | Admin | Create a contest |
+| `POST` | `/:id/register` | User | Register for a contest |
+| `GET` | `/:id/leaderboard` | Public | Live leaderboard |
+
+### Users (`/users`)
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| `GET` | `/profile` | User | My profile and rating history |
+| `GET` | `/leaderboard` | Public | Global rankings |
 
 ---
 
-## 🔌 WebSocket Event Specification
+## 🔌 WebSocket Events (Socket.io)
 
-CodeForge uses Socket.io with JWT authentication in query parameters (`?token=<JWT>`).
+Socket connects with JWT: `io(SERVER_URL, { query: { token } })`
 
-### Client $\rightarrow$ Server Events
-| Event | Payload | Description |
+**Events you send (Client → Server):**
+| Event | Payload | What it does |
 |---|---|---|
-| `join_lobby` | `{}` | Requests to enter the matchmaking pool |
-| `leave_lobby` | `{}` | Cancels matchmaking search |
-| `join_battle` | `{ battleId }` | Joins the designated battle room |
-| `battle_code_update`| `{ battleId, code }` | Syncs current code length / state |
-| `surrender_battle` | `{ battleId }` | Player forfeits the match |
+| `join_lobby` | — | Enter matchmaking |
+| `leave_lobby` | — | Cancel matchmaking |
+| `join_battle` | `{ battleId }` | Join battle room |
+| `battle_code_update` | `{ battleId, code }` | Sync code state |
+| `surrender_battle` | `{ battleId }` | Forfeit the match |
 
-### Server $\rightarrow$ Client Events
-| Event | Payload | Description |
+**Events you receive (Server → Client):**
+| Event | Payload | What it means |
 |---|---|---|
-| `match_found` | `{ battleId, problemId, opponent }` | Notifies that opponent was found; triggers match start |
-| `opponent_status` | `{ testsPassed, totalTests, status }` | Live updates on opponent's submission attempts |
-| `battle_submission_result` | `{ submissionId, status, passedTests }` | Result of a code submission inside battle |
-| `battle_ended` | `{ winner, reason, ratingChanges }` | Battle concluded; reveals final rating deltas |
+| `match_found` | `{ battleId, problem, opponent }` | Opponent found, battle starting |
+| `opponent_status` | `{ testsPassed, totalTests, status }` | Opponent progress update |
+| `battle_submission_result` | `{ status, passedTests }` | Your submission judged |
+| `battle_ended` | `{ winner, reason, ratingChanges }` | Match is over |
 
 ---
 
-## 💻 Tech Stack Details
-
-```
-Frontend:
-├── Framework: React 19 (Hooks, Context API, Suspense)
-├── Tooling: Vite 6 (HMR, Rollup Bundler)
-├── Router: React Router DOM v7 (SPA client-side navigation)
-├── HTTP Client: Axios (Interceptors for Bearer token & unified error handling)
-├── WebSockets: Socket.io-client
-└── Styling: Modular Pure CSS (Glassmorphic dark design, responsive grids)
-
-Backend:
-├── Runtime: Node.js (v20+ LTS Bullseye)
-├── Server: Express.js 4 (REST architecture)
-├── Database ODM: Mongoose 8 (Schema validation, indexes, population)
-├── Caching & Queues: IORedis + BullMQ (Exponential backoff retries, Redis TLS)
-├── Real-Time: Socket.io 4 (CORS configured, room namespaces)
-├── Scheduler: node-cron (Automated background contest finalization)
-├── Authentication: jsonwebtoken + bcryptjs
-└── Compiler: GCC / g++ (C++17 standard)
-```
-
----
-
-## 📂 Project Directory Structure
+## 📂 Project Structure
 
 ```
 CodeForge/
 ├── backend/
-│   ├── Dockerfile                       # Production container with g++ & Node.js 20
-│   ├── server.js                        # Main HTTP + Socket server bootstrap
-│   ├── package.json
-│   ├── .env.example                     # Environment template
+│   ├── Dockerfile                    # Node.js 20 + g++ for Render deployment
+│   ├── server.js                     # App entry — HTTP server + Socket.io setup
 │   └── src/
-│       ├── app.js                       # Express configuration & CORS
+│       ├── app.js                    # Express app, middleware, routes
 │       ├── config/
-│       │   ├── database.js              # MongoDB Atlas connection
-│       │   ├── redis.js                 # Redis client instance
-│       │   └── queue.config.js          # BullMQ TLS Redis connection
-│       ├── controllers/                 # REST Route controllers
+│       │   ├── database.js           # MongoDB connection
+│       │   ├── redis.js              # Redis client
+│       │   └── queue.config.js       # BullMQ Redis connection (with TLS)
+│       ├── controllers/              # Request handlers
 │       ├── middlewares/
-│       │   ├── auth.middleware.js       # JWT validation & Token blacklist check
-│       │   └── rateLimiter.middleware.js# Express rate limiters
-│       ├── models/                      # Mongoose Schema definitions
+│       │   ├── auth.middleware.js    # JWT verification + blacklist check
+│       │   └── rateLimiter.middleware.js
+│       ├── models/                   # Mongoose schemas
 │       ├── queues/
-│       │   └── submission.queue.js      # BullMQ Queue declaration
-│       ├── repositories/                # Database query abstractions
-│       ├── routes/                      # API endpoint definitions
+│       │   └── submission.queue.js   # BullMQ queue setup
+│       ├── repositories/             # DB query functions
+│       ├── routes/                   # API route definitions
 │       ├── services/
-│       │   ├── auth.service.js
-│       │   ├── battleResult.service.js  # Battle resolution & ratings
-│       │   ├── contestRatingScheduler.service.js # Auto-rating cron daemon
-│       │   ├── judge.service.js         # Core submission orchestrator
-│       │   ├── matchmaking.service.js   # 1v1 matchmaking pool
-│       │   ├── rating.service.js        # ELO formula implementation
+│       │   ├── judge.service.js      # Core judging logic
+│       │   ├── matchmaking.service.js
+│       │   ├── battleResult.service.js
+│       │   ├── rating.service.js     # ELO calculations
+│       │   ├── contestRatingScheduler.service.js  # Cron job for auto-rating
 │       │   └── executor/
-│       │       ├── code-generator.js    # C++ harness wrapper generator
-│       │       ├── cpp.executor.js      # Direct & Docker compilation engine
-│       │       └── executor.factory.js  # Executor dispatcher
+│       │       ├── code-generator.js # Wraps user code into a full C++ program
+│       │       ├── cpp.executor.js   # Compiles and runs code (Docker or direct)
+│       │       └── executor.factory.js
 │       ├── sockets/
-│       │   ├── socket.js                # Socket connection handling
-│       │   ├── socketManager.js         # Global IO instance accessor
-│       │   └── battle.socket.js         # 1v1 Battle event handlers
+│       │   ├── socket.js             # Socket.io connection setup
+│       │   ├── socketManager.js      # Global io() instance
+│       │   └── battle.socket.js      # Battle room event handlers
 │       ├── utils/
-│       │   └── cache.js                 # Redis cache helper functions
+│       │   └── cache.js              # Redis helper functions
 │       └── workers/
-│           └── submission.worker.js     # BullMQ async submission processor
+│           └── submission.worker.js  # BullMQ worker — processes judge jobs
 │
 ├── frontend/
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── vercel.json                      # Single Page App routing rewrite rules
-│   ├── package.json
-│   ├── .env.example
+│   ├── vercel.json                   # SPA routing fix for Vercel
 │   └── src/
-│       ├── main.jsx                     # Application entry
-│       ├── App.jsx                      # Route definitions
-│       ├── components/                  # Reusable Navbar, Modals, Cards
-│       ├── context/                     # AuthContext for global session state
+│       ├── App.jsx                   # Routes
+│       ├── components/               # Navbar, Cards, Modals
+│       ├── context/                  # Auth context (global user state)
 │       ├── pages/
-│       │   ├── ProblemList.jsx          # Problems browser & search
-│       │   ├── ProblemDetail.jsx        # Code Editor, Runner, Submissions
-│       │   ├── BattleLobby.jsx          # 1v1 Matchmaking interface
-│       │   ├── BattleArena.jsx          # Live duel arena with opponent telemetry
-│       │   ├── Contests.jsx             # Active and past contests list
-│       │   ├── ContestDetail.jsx        # Contest problems & Live Leaderboard
-│       │   ├── Profile.jsx              # User analytics & rating evolution
-│       │   ├── Submissions.jsx          # Global submission history
-│       │   ├── CreateProblem.jsx        # Admin problem generator
-│       │   └── CreateContest.jsx        # Admin contest creator
+│       │   ├── ProblemList.jsx       # Problem browser
+│       │   ├── ProblemDetail.jsx     # Editor + Run/Submit + Submission history
+│       │   ├── BattleLobby.jsx       # Matchmaking UI
+│       │   ├── BattleArena.jsx       # Live 1v1 battle screen
+│       │   ├── Contests.jsx          # Contest list
+│       │   ├── ContestDetail.jsx     # Contest problems + leaderboard
+│       │   ├── Profile.jsx           # User stats + rating chart
+│       │   ├── Submissions.jsx       # All submissions view
+│       │   ├── CreateProblem.jsx     # Admin: add problem
+│       │   └── CreateContest.jsx     # Admin: add contest
 │       └── services/
-│           ├── api.js                   # Configured Axios instance
-│           └── socket.js                # Shared Socket.io client instance
+│           ├── api.js                # Axios instance with auth interceptor
+│           └── socket.js             # Shared socket.io client
 └── README.md
 ```
 
 ---
 
-## 🛠️ Local Development Setup
+## 🛠️ Running Locally
 
-### Prerequisites
-- **Node.js**: v18.0.0 or higher
-- **MongoDB**: Local daemon running on `27017` or MongoDB Atlas URI
-- **Redis**: Local server running on `6379` or Upstash Redis URL
-- **C++ Compiler**: `g++` (GCC) installed and accessible in system `PATH`
-- **Docker** *(Optional, for sandboxed execution testing)*
+### Requirements
+- Node.js v18+
+- MongoDB (local or Atlas URI)
+- Redis (local or Upstash URL)
+- `g++` compiler installed (`sudo apt install g++` on Linux / MinGW on Windows)
 
-### 1. Clone Repository
+### 1. Clone the Repo
 ```bash
 git clone https://github.com/Lovejindal1/CodeForge.git
 cd CodeForge
 ```
 
-### 2. Configure Backend
+### 2. Setup Backend
 ```bash
 cd backend
 npm install
-
-# Create environment file
-cp .env.example .env
-```
-
-Edit `backend/.env`:
-```env
-PORT=3000
-NODE_ENV=development
-MONGO_URI=mongodb://localhost:27017/codeforge
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=your_super_secret_jwt_key_here
-JWT_EXPIRES_IN=7d
-FRONTEND_URL=http://localhost:5173
-```
-
-Start the backend server:
-```bash
+cp .env.example .env   # Fill in your values
 npm start
-# Output confirms: MongoDB Connected, Redis Connected, Submission worker started
 ```
 
-### 3. Configure Frontend
-Open a second terminal window:
+Backend runs at `http://localhost:3000`
+
+### 3. Setup Frontend
 ```bash
 cd frontend
 npm install
-
-# Local development defaults to http://localhost:3000 automatically
 npm run dev
 ```
 
-Visit `http://localhost:5173` in your browser.
+Frontend runs at `http://localhost:5173`
 
 ---
 
 ## 🔐 Environment Variables
 
-### Backend (`backend/.env`)
-| Variable | Required | Description | Example |
-|---|---|---|---|
-| `PORT` | No | Server listen port (Default: 3000) | `3000` |
-| `NODE_ENV` | Yes | App environment (`development` / `production`) | `production` |
-| `MONGO_URI` | Yes | MongoDB connection string (Atlas or Local) | `mongodb+srv://...` |
-| `REDIS_URL` | Yes | Redis connection URI (supports `rediss://` TLS) | `rediss://default:...@upstash.io:6379` |
-| `JWT_SECRET` | Yes | Cryptographic secret for signing tokens | `superSecretKey_123` |
-| `JWT_EXPIRES_IN`| Yes | Token expiry duration | `7d` |
-| `FRONTEND_URL` | Yes | Allowed CORS origin for production | `https://code-forge-iota-ten.vercel.app` |
+### `backend/.env`
+| Variable | Required | Description |
+|---|---|---|
+| `PORT` | No | Port to run on (default: 3000) |
+| `NODE_ENV` | Yes | `development` or `production` |
+| `MONGO_URI` | Yes | MongoDB connection string |
+| `REDIS_URL` | Yes | Redis URL (use `rediss://` for TLS) |
+| `JWT_SECRET` | Yes | Secret key for signing tokens |
+| `JWT_EXPIRES_IN` | Yes | Token expiry e.g. `7d` |
+| `FRONTEND_URL` | Yes | Allowed CORS origin |
 
-### Frontend (`frontend/.env`)
-| Variable | Required | Description | Example |
-|---|---|---|---|
-| `VITE_API_URL` | Yes | Base URL for REST API endpoints | `https://codeforge-backend-10w2.onrender.com/api/v1` |
-| `VITE_SOCKET_URL`| Yes | Base URL for WebSocket connection | `https://codeforge-backend-10w2.onrender.com` |
-
----
-
-## 🚀 Production Deployment
-
-### Backend (Render Cloud with Docker)
-1. In Render, create a new **Web Service** pointing to your repository.
-2. Select **Docker** as the Environment.
-3. Configure:
-   - **Root Directory:** `backend`
-   - **Dockerfile Path:** `./Dockerfile`
-4. Add all Backend Environment Variables in the Render dashboard.
-
-### Frontend (Vercel)
-1. In Vercel, import the `CodeForge` repository.
-2. Configure:
-   - **Root Directory:** `frontend`
-   - **Framework Preset:** `Vite`
-3. Add Environment Variables:
-   - `VITE_API_URL`: `https://<your-render-url>/api/v1`
-   - `VITE_SOCKET_URL`: `https://<your-render-url>`
-4. Deploy! SPA routing is handled automatically via `frontend/vercel.json`.
+### `frontend/.env`
+| Variable | Required | Description |
+|---|---|---|
+| `VITE_API_URL` | Yes | Backend REST API base URL |
+| `VITE_SOCKET_URL` | Yes | Backend WebSocket URL |
 
 ---
 
-## 👨‍💻 Author & Acknowledgments
+## 🚀 Cloud Deployment Guide
+
+CodeForge is built on a modern, decoupled cloud architecture using 5 free-tier services:
+
+```
+[Vercel]                 ──► Frontend (React + Vite SPA)
+[Render]                 ──► Backend API & Judge (Docker with g++)
+[MongoDB Atlas]          ──► Primary Database (M0 Cloud Cluster)
+[Upstash Redis]          ──► Task Queue & Cache (Serverless Redis TLS)
+[UptimeRobot]            ──► 24/7 Keep-Alive Heartbeat (/health pinger)
+```
+
+---
+
+### Step 1: Database Setup (MongoDB Atlas)
+1. Sign up at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free **M0 Cluster**.
+2. **Network Access**: Add IP `0.0.0.0/0` (Allow access from anywhere, required for cloud hosting).
+3. **Database Access**: Create a database user with Read/Write privileges.
+4. **Connection String**: Click *Connect* $\rightarrow$ *Drivers* $\rightarrow$ Copy the URI:
+   ```
+   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/codeforge?retryWrites=true&w=majority
+   ```
+
+---
+
+### Step 2: Queue & Cache Setup (Upstash Redis)
+1. Sign up at [Upstash Redis](https://upstash.com) and create a free database.
+2. Select the cloud region closest to your Render server region.
+3. In the database dashboard, copy the **`rediss://`** connection string (TLS enabled).
+4. *Usage in CodeForge:*
+   - **BullMQ**: Powers the asynchronous submission judging worker queue.
+   - **Token Blacklist**: Instantly invalidates JWTs on logout.
+   - **Rate Limiting**: Throttles brute-force API requests.
+
+---
+
+### Step 3: Backend Deployment (Render with Docker)
+1. Sign up at [Render](https://render.com) and click **New +** $\rightarrow$ **Web Service**.
+2. Connect your GitHub repository: `https://github.com/Lovejindal1/CodeForge`.
+3. Configure the service:
+   - **Name**: `codeforge-backend`
+   - **Runtime / Environment**: `Docker`
+   - **Root Directory**: `backend`
+   - **Dockerfile Path**: `./Dockerfile`
+   - **Instance Type**: `Free`
+4. Add **Environment Variables**:
+   ```env
+   NODE_ENV=production
+   PORT=3000
+   MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/codeforge
+   REDIS_URL=rediss://default:xxxxxx@xxxxxx.upstash.io:6379
+   JWT_SECRET=your_super_secret_jwt_key
+   JWT_EXPIRES_IN=7d
+   FRONTEND_URL=https://code-forge-iota-ten.vercel.app
+   ```
+5. Click **Create Web Service**. Render builds the Docker image (`node:20-bullseye-slim` with `g++`) and starts the server.
+
+---
+
+### Step 4: Frontend Deployment (Vercel)
+1. Sign up at [Vercel](https://vercel.com) and click **Add New** $\rightarrow$ **Project**.
+2. Import the `CodeForge` repository.
+3. Configure project settings:
+   - **Root Directory**: `frontend`
+   - **Framework Preset**: `Vite`
+4. Add **Environment Variables**:
+   ```env
+   VITE_API_URL=https://<your-render-backend-url>/api/v1
+   VITE_SOCKET_URL=https://<your-render-backend-url>
+   ```
+5. Click **Deploy**.
+   > *Note:* Single Page Application (SPA) routing is pre-configured via [`frontend/vercel.json`](file:///e:/backend_code/CodeForge/frontend/vercel.json) to prevent 404 errors on page refreshes.
+
+---
+
+### Step 5: 24/7 Keep-Alive Monitor (UptimeRobot)
+Render's free tier automatically spins down web services after 15 minutes of inactivity, resulting in a ~30–40s cold start when a user visits. To prevent this:
+
+1. Sign up for free at [UptimeRobot](https://uptimerobot.com).
+2. Click **Add New Monitor**:
+   - **Monitor Type**: `HTTP(s)`
+   - **Friendly Name**: `CodeForge Backend Keep-Alive`
+   - **URL (or IP)**: `https://<your-render-backend-url>/health`
+   - **Monitoring Interval**: `Every 5 minutes`
+3. Save monitor. UptimeRobot now pings the `/health` endpoint every 5 minutes, keeping the backend warm 24/7 with **zero cold start delays**.
+
+---
+
+## 👨‍💻 Author
 
 **Love Jindal**
 - GitHub: [@Lovejindal1](https://github.com/Lovejindal1)
-- Project Repository: [https://github.com/Lovejindal1/CodeForge](https://github.com/Lovejindal1/CodeForge)
+- Live Project: [code-forge-iota-ten.vercel.app](https://code-forge-iota-ten.vercel.app)
 
 ---
 
 <div align="center">
 
-**⭐ Star this repository if you find it helpful!**
+⭐ **If you like this project, please give it a star!**
 
 Made with ❤️ by [Love Jindal](https://github.com/Lovejindal1)
 
