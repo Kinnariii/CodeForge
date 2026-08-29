@@ -46,7 +46,7 @@ const submissionWorker = new Worker("submission-queue", async (job) => {
         }
     }
     return result;
-}, {connection, concurrency: 2});
+}, {connection, concurrency: 1});
 
 submissionWorker.on("completed", (job) => {
     console.log(`Job ${job.id} completed successfully`);

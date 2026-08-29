@@ -6,14 +6,6 @@ const createSubmission = async (req, res) => {
     try {
         const submission = await submissionService.createSubmission(req.body, req.user.id);
 
-        await submissionQueue.add(
-            "judge-submission",
-            {
-                submissionId: submission._id.toString(),
-                userId: req.user.id.toString()
-            }
-        );
-
         res.status(201).json({
             success: true,
             message: "Submission queued successfully",

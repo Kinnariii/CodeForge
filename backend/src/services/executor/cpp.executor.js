@@ -90,8 +90,8 @@ const executeCppDirect = async (code, testCases, tempDir, codePath) => {
 
     // Compile once
     try {
-        await execAsync(`g++ -O2 -Werror=return-type "${codePath}" -o "${binaryPath}"`, {
-            timeout: 10000,
+        await execAsync(`g++ -O1 "${codePath}" -o "${binaryPath}"`, {
+            timeout: 15000,
             maxBuffer: 1024 * 1024
         });
     } catch (error) {
