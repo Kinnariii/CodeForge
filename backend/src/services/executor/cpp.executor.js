@@ -95,11 +95,16 @@ const executeCppDirect = async (code, testCases, tempDir, codePath) => {
             maxBuffer: 1024 * 1024
         });
     } catch (error) {
+        // Log full details to server logs for debugging
+        console.error("[CPP COMPILE] stderr:", JSON.stringify(error.stderr));
+        console.error("[CPP COMPILE] message:", error.message);
+        console.error("[CPP COMPILE] code:", error.code);
+        const compileError = (error.stderr && error.stderr.trim()) || error.message;
         return {
             results: testCases.map(() => ({
                 status: "compile_error",
                 output: "",
-                error: error.stderr || error.message,
+                error: compileError,
                 runtime: 0
             }))
         };
