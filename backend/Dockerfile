@@ -1,8 +1,8 @@
-FROM node:18-slim
+FROM node:20-bullseye-slim
 
 # Install g++ for sandboxed C++ code execution
 RUN apt-get update && \
-    apt-get install -y g++ && \
+    apt-get install -y g++ build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
