@@ -536,18 +536,20 @@ Render's free tier automatically spins down web services after 15 minutes of ina
 
 ---
 
+Further improvements 
+
+1) Multi user platform
+2) integrate different platforms like leetcode,codeforces,codechef etc....
+3) manage individual profiles with their current ranking in each and live contest update
+4) Ai chatbot that will assist you with solving the problems
+5) 
+
 ## 👨‍💻 Author
 
-**Love Jindal**
+**Kinnari & Aditi**
 - GitHub: [@Lovejindal1](https://github.com/Lovejindal1)
 - Live Project: [code-forge-iota-ten.vercel.app](https://code-forge-iota-ten.vercel.app)
 
 ---
 
-<div align="center">
 
-⭐ **If you like this project, please give it a star!**
-
-Made with ❤️ by [Love Jindal](https://github.com/Lovejindal1)
-
-</div>
